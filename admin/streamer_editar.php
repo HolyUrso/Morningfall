@@ -2,6 +2,7 @@
 require_once '../config/auth.php';
 require_once '../config/database.php';
 require_once '../config/audit.php';
+require_once __DIR__.'/../classes/PlatformSync.php';
 
 $id = (int)($_GET['id'] ?? $_POST['id'] ?? 0);
 $st = $pdo->prepare("SELECT * FROM streamers WHERE id=?");
@@ -34,6 +35,64 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $up = $pdo->prepare("UPDATE streamers SET name=?,discord=?,discord_id=?,discord_avatar=?,platform=?,channel_url=?,category=?,access_code=?,joined_at=?,notes=?,webhook_url=? WHERE id=?");
             $up->execute([$name,$discord,$discordId !== '' ? $discordId : null,$discordAvatar !== '' ? $discordAvatar : null,$platform,$channel,$category,$code,$joined ?: null,$notes,$webhook !== '' ? $webhook : null,$id]);
+
+            if ($channel !== '') {
+                $syncPlatform = $platform;
+                try {
+                    $platformSync = new PlatformSync();
+                    $result = $platformSync->resolve($channel, $platform !== '' ? $platform : null);
+                    $syncPlatform = (string)$result['platform'];
+
+                    $platformLookup = $pdo->prepare('SELECT id FROM streamer_platforms WHERE streamer_id=? AND platform=? LIMIT 1');
+                    $platformLookup->execute([$id, $syncPlatform]);
+                    $platformId = $platformLookup->fetchColumn();
+
+                    if ($platformId !== false) {
+                        $platformUpdate = $pdo->prepare('UPDATE streamer_platforms SET username=?,display_name=?,channel_id=?,avatar_url=?,channel_url=?,is_primary=1,active=1,last_synced_at=NOW(),sync_error=NULL WHERE id=?');
+                        $platformUpdate->execute([
+                            $result['username'],
+                            $result['display_name'],
+                            $result['channel_id'],
+                            $result['avatar_url'],
+                            $result['channel_url'],
+                            (int)$platformId
+                        ]);
+                    } else {
+                        $platformInsert = $pdo->prepare('INSERT INTO streamer_platforms(streamer_id,platform,username,display_name,channel_id,avatar_url,channel_url,is_primary,active,last_synced_at,sync_error) VALUES(?,?,?,?,?,?,?,1,1,NOW(),NULL)');
+                        $platformInsert->execute([
+                            $id,
+                            $result['platform'],
+                            $result['username'],
+                            $result['display_name'],
+                            $result['channel_id'],
+                            $result['avatar_url'],
+                            $result['channel_url']
+                        ]);
+                    }
+                } catch (Throwable $syncException) {
+                    $syncError = substr($syncException->getMessage(), 0, 500);
+                    try {
+                        if ($syncPlatform === '') {
+                            $platformSync = new PlatformSync();
+                            $syncPlatform = $platformSync->detectPlatform($channel);
+                        }
+
+                        $platformLookup = $pdo->prepare('SELECT id FROM streamer_platforms WHERE streamer_id=? AND platform=? LIMIT 1');
+                        $platformLookup->execute([$id, $syncPlatform]);
+                        $platformId = $platformLookup->fetchColumn();
+
+                        if ($platformId !== false) {
+                            $platformErrorUpdate = $pdo->prepare('UPDATE streamer_platforms SET sync_error=? WHERE id=?');
+                            $platformErrorUpdate->execute([$syncError, (int)$platformId]);
+                        } else {
+                            $platformErrorInsert = $pdo->prepare('INSERT INTO streamer_platforms(streamer_id,platform,username,display_name,channel_id,avatar_url,channel_url,is_primary,active,last_synced_at,sync_error) VALUES(?,?,?,?,?,?,?,1,1,NULL,?)');
+                            $platformErrorInsert->execute([$id,$syncPlatform,$channel,'','','',$channel,$syncError]);
+                        }
+                    } catch (Throwable $ignored) {
+                    }
+                }
+            }
+
             auditLog($pdo,'Alteração de streamer','Usuário',$id,$name,'Perfil do streamer alterado.', $beforeStreamer, ['name'=>$name,'discord'=>$discord,'platform'=>$platform,'channel_url'=>$channel,'category'=>$category,'joined_at'=>$joined,'notes'=>$notes]);
             header('Location: streamer.php?id='.$id.'&updated=1');
             exit;

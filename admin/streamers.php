@@ -10,9 +10,9 @@ $where = [];
 $params = [];
 
 if ($search !== '') {
-    $where[] = "(s.name LIKE ? OR s.discord LIKE ? OR s.platform LIKE ?)";
+  $where[] = "(s.name LIKE ? OR s.discord LIKE ? OR sp.platform LIKE ? OR sp.display_name LIKE ? OR sp.username LIKE ? OR sp.channel_url LIKE ?)";
     $term = "%{$search}%";
-    $params[] = $term; $params[] = $term; $params[] = $term;
+  $params[] = $term; $params[] = $term; $params[] = $term; $params[] = $term; $params[] = $term; $params[] = $term;
 }
 if (in_array($category, ['novato','oficial','afiliado'], true)) {
     $where[] = "s.category = ?";
@@ -22,9 +22,17 @@ if ($status === 'active') $where[] = "s.active = 1";
 if ($status === 'inactive') $where[] = "s.active = 0";
 
 $sql = "SELECT s.*,
+  sp.platform AS platform_name,
+  sp.display_name AS platform_display_name,
+  sp.channel_url AS platform_channel_url,
+  sp.avatar_url AS platform_avatar_url,
         COALESCE((SELECT COUNT(*) FROM vods v WHERE v.streamer_id=s.id),0) AS vod_count,
         COALESCE((SELECT SUM(v.duration_minutes) FROM vods v WHERE v.streamer_id=s.id),0) AS total_minutes
-        FROM streamers s";
+  FROM streamers s
+  LEFT JOIN streamer_platforms sp
+    ON sp.streamer_id = s.id
+   AND sp.is_primary = 1
+   AND sp.active = 1";
 if ($where) $sql .= " WHERE ".implode(" AND ", $where);
 $sql .= " ORDER BY s.active DESC, s.name ASC";
 
@@ -77,7 +85,13 @@ function formatDurationHM(int $minutes): string {
 <tbody>
 <?php foreach($rows as $r): ?>
 <tr>
-<td><a href="streamer.php?id=<?=$r['id']?>"><strong><?=htmlspecialchars($r['name'])?></strong></a><small class="table-sub"><?=htmlspecialchars($r['platform'] ?: 'Plataforma não informada')?></small></td>
+<td>
+<a href="streamer.php?id=<?=$r['id']?>"><strong><?=htmlspecialchars($r['name'])?></strong></a>
+<?php if (!empty($r['platform_avatar_url'])): ?><img src="<?=htmlspecialchars($r['platform_avatar_url'])?>" alt="" style="width:24px;height:24px;border-radius:50%;vertical-align:middle;margin-left:6px;object-fit:cover"><?php endif; ?>
+<small class="table-sub"><?=htmlspecialchars($r['platform_name'] ?: 'Plataforma não informada')?></small>
+<?php if (!empty($r['platform_display_name'])): ?><small class="table-sub"><?=htmlspecialchars($r['platform_display_name'])?></small><?php endif; ?>
+<?php if (!empty($r['platform_channel_url'])): ?><small class="table-sub"><a href="<?=htmlspecialchars($r['platform_channel_url'])?>" target="_blank" rel="noopener noreferrer">Abrir canal</a></small><?php endif; ?>
+</td>
 <td><span class="badge <?=$r['category']?>"><?=ucfirst($r['category'])?></span></td>
 <td><?=$r['vod_count']?></td>
 <td><?=formatDurationHM((int)$r['total_minutes'])?></td>

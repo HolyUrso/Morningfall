@@ -2,8 +2,8 @@
 
 $host = 'localhost';
 $db   = 'holyurso_morningfall';
-$user = 'holyurso_morningfall';
-$pass = '@Andariel666';
+$user = 'root';
+$pass = '';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";

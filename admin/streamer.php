@@ -5,7 +5,19 @@ require_once '../config/vod_points.php';
 require_once '../config/streamer_webhook.php';
 
 $id=(int)($_GET['id']??0);
-$st=$pdo->prepare("SELECT * FROM streamers WHERE id=?");
+$st=$pdo->prepare("SELECT s.*,
+		sp.platform AS platform_name,
+		sp.username AS platform_username,
+		sp.display_name AS platform_display_name,
+		sp.channel_url AS platform_channel_url,
+		sp.avatar_url AS platform_avatar_url,
+		sp.channel_id AS platform_channel_id
+		FROM streamers s
+		LEFT JOIN streamer_platforms sp
+			ON sp.streamer_id=s.id
+		 AND sp.is_primary=1
+		 AND sp.active=1
+		WHERE s.id=?");
 $st->execute([$id]);
 $s=$st->fetch();
 if(!$s) exit('Streamer não encontrado.');
@@ -57,8 +69,12 @@ function formatDurationHM(int $minutes): string { return sprintf('%02d:%02d', in
 <div class="profile-grid">
 <div class="panel"><h3>Dados</h3>
 <p><strong>Discord:</strong> <?=htmlspecialchars($s['discord'] ?: 'Não informado')?></p>
-<p><strong>Plataforma:</strong> <?=htmlspecialchars($s['platform'] ?: 'Não informada')?></p>
-<p><strong>Canal:</strong> <?php if($s['channel_url']): ?><a href="<?=htmlspecialchars($s['channel_url'])?>" target="_blank">Abrir canal</a><?php else: ?>Não informado<?php endif; ?></p>
+<p><strong>Plataforma:</strong> <?=htmlspecialchars($s['platform_name'] ?: 'Não informada')?></p>
+<p><strong>Usuário:</strong> <?=htmlspecialchars($s['platform_username'] ?: 'Não informado')?></p>
+<p><strong>Nome exibido:</strong> <?=htmlspecialchars($s['platform_display_name'] ?: 'Não informado')?></p>
+<p><strong>ID do canal:</strong> <?=htmlspecialchars($s['platform_channel_id'] ?: 'Não informado')?></p>
+<p><strong>Canal:</strong> <?php if($s['platform_channel_url']): ?><a href="<?=htmlspecialchars($s['platform_channel_url'])?>" target="_blank" rel="noopener noreferrer">Abrir canal</a><?php else: ?>Não informado<?php endif; ?></p>
+<?php if($s['platform_avatar_url']): ?><p><strong>Avatar:</strong> <img src="<?=htmlspecialchars($s['platform_avatar_url'])?>" alt="Avatar do canal" style="width:40px;height:40px;border-radius:50%;vertical-align:middle;object-fit:cover"></p><?php endif; ?>
 <p><strong>Entrada:</strong> <?=htmlspecialchars($s['joined_at'] ?: 'Não informada')?></p>
 <p><strong>Código de acesso:</strong> <b><?=htmlspecialchars($s['access_code'])?></b></p>
 <p><strong>Webhook:</strong> <?=!empty($s['webhook_url'])?'🟢 Configurada':'⚪ Não configurada'?></p>
