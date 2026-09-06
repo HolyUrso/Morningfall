@@ -10,13 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout do código
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Deploy para HelioHost
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: condadocarmesim.helioho.st
+          server: tommy2.heliohost.org
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
@@ -24,10 +23,3 @@ jobs:
           server-dir: /httpdocs/
           dangerous-clean-slate: false
           timeout: 600000
-          exclude: |
-            **/.git/**
-            **/.github/**
-            **/storage/backups/**
-            **/*.zip
-            **/.DS_Store
-            **/Thumbs.db

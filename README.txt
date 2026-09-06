@@ -1,5 +1,5 @@
 CARMESIM — SOBRE + LORE — BACKGROUND CORRIGIDO
-Teste Git
+Teste Git1
 Corrigido o background da página pages/sobre.html.
 
 A página Sobre agora força o mesmo:
