@@ -1,2 +1,0 @@
-# Morningfall
-Morningfall Creators Platform

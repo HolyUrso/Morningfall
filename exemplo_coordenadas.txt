@@ -1,0 +1,13 @@
+# Padrão: Categoria | Subcategoria | Ícone | Nome | CDS
+# A categoria e a subcategoria precisam estar cadastradas no Master.
+# Empresas | Saloons | 🍺 | Saloon de Valentine | -314.88 808.61 118.99
+# Empresas | Ferrarias | 🔨 | Ferraria Valentine | -323.7358 717.5155 121.698402
+# Empresas | Tabacarias | 🚬 | Tabacaria Rhodes | 1325.8912 -1200.2056 82.538246
+# Empresas | Artesanatos | 🎨 | Artesanato Rhodes | 1314.0377 -1251.4417 79.092972
+# Empresas | Armarias | 🔫 | Armaria Rhodes | 1323.7992 -1321.8015 77.889778
+# Empresas | Ateliês | ✂️ | Ateliê Saint Denis | 2587.7869 -1010.1629 44.239948
+# Empresas | Perfumarias | 🌹 | Perfumaria Saint Denis | 2344.9531 -1374.2511 46.596611
+# Empresas | Jornais | 📰 | Jornal Saint Denis | 2391.4458 -1355.5328 45.883583
+# Xerifado | Cavalaria | 🐎 | Posto de Polícia Valentine | -278.42 805.29 119.38
+# Xerifado | Cavalaria | 🐎 | Posto de Polícia Rhodes | 1362.04 -1302.10 77.77
+# Para novas categorias/subcategorias, cadastre primeiro no painel Master.

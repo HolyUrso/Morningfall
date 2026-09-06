@@ -1,0 +1,3 @@
+<FilesMatch "^(config\.php|youtube\.php|twitch\.php)$">
+Require all denied
+</FilesMatch>

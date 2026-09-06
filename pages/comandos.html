@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Comandos • Condado Carmesim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css?v=11">
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
+<style>
+.commands-page{position:relative;min-height:100vh;overflow:hidden}
+.commands-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background:
+linear-gradient(90deg,rgba(5,6,8,.88),rgba(5,6,8,.72) 50%,rgba(5,6,8,.84)),
+url("../assets/images/background.webp") center/cover fixed no-repeat}
+.commands-overlay{position:fixed;inset:0;z-index:0;background:linear-gradient(180deg,rgba(5,6,8,.18),rgba(5,6,8,.70));pointer-events:none}
+.commands-section{position:relative;z-index:1;padding:54px 7% 70px}
+.commands-wrap{max-width:1100px;margin:0 auto}
+.commands-heading{text-align:center;margin-bottom:30px}
+.commands-kicker{display:block;color:#d4af37;font-size:10px;font-weight:700;letter-spacing:2.5px}
+.commands-heading h1{margin:10px 0 10px;color:#f5f1e9;font:700 clamp(32px,4vw,48px)/1.1 Cinzel,Georgia,serif}
+.commands-heading p{margin:0 auto;max-width:720px;color:#9fa5ae;font-size:12px;line-height:1.8}
+.commands-tools{display:flex;justify-content:space-between;gap:14px;align-items:center;margin-bottom:18px}
+.commands-search{width:min(430px,100%);background:rgba(13,15,18,.86);border:1px solid rgba(255,255,255,.10);border-radius:10px;padding:12px 14px;color:#eee;outline:none;font:500 12px Poppins,sans-serif}
+.commands-search:focus{border-color:rgba(212,175,55,.42)}
+.commands-count{color:#858b95;font-size:11px}
+.commands-card{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;background:transparent;border:0;border-radius:0;padding:0;box-shadow:none;backdrop-filter:none}
+.command-row{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-height:205px;padding:18px;border:1px solid rgba(212,175,55,.20);border-radius:14px;background:rgba(13,15,18,.90);box-shadow:0 18px 45px rgba(0,0,0,.28);backdrop-filter:blur(8px);transition:.2s}
+.command-row:hover{transform:translateY(-3px);border-color:rgba(212,175,55,.38);box-shadow:0 22px 50px rgba(0,0,0,.38)}
+.command-number{width:40px;height:40px;flex:0 0 40px;border-radius:11px;display:grid;place-items:center;background:rgba(139,30,30,.18);border:1px solid rgba(212,175,55,.20);color:#d4af37;font-weight:700}
+.command-name{margin:0 0 6px;color:#f0ece4;font-size:15px;font-weight:700}
+.command-code{display:inline-block;color:#d4af37;background:rgba(212,175,55,.07);border:1px solid rgba(212,175,55,.14);padding:4px 8px;border-radius:6px;font:600 11px ui-monospace,SFMono-Regular,Consolas,monospace}
+.command-description{margin:9px 0 0;color:#9fa5ae;font-size:11px;line-height:1.7}
+.command-status{margin-top:auto;font-size:8px;text-transform:uppercase;letter-spacing:1.4px;color:#8d939d;padding-top:8px}
+.commands-state{text-align:center;padding:42px 20px;color:#969ca6;font-size:12px}
+.commands-state.error{color:#c98787}
+.commands-source{margin:15px 0 0;text-align:center;color:#666d78;font-size:9px}
+@media(max-width:1200px){.commands-card{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:950px){.commands-card{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){
+ .commands-section{position:relative;z-index:1;padding:35px 15px 50px}
+ .commands-tools{display:block}.commands-count{margin-top:8px}
+ .commands-card{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .command-row{min-height:190px;padding:15px}
+}
+@media(max-width:460px){.commands-card{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="top-panel">
+<a class="top-brand" href="../index.html"><div class="top-brand-logo"><img src="../assets/images/logo.webp" alt="Logo Carmesim"></div><div><strong>CARMESIM</strong><span>CONDADO • REDM</span></div></a>
+<button class="mobile-menu" id="mobileMenu" aria-label="Menu">☰</button>
+<nav class="top-nav" id="topNav">
+<a class="nav-item" href="../index.html"><span class="nav-icon">⌂</span>Home</a>
+<a class="nav-item" href="conexao.html"><span class="nav-icon">⌁</span>Conexão</a>
+<a class="nav-item" href="empresas.html"><span class="nav-icon">▣</span>Empresas</a><a class="nav-item" href="precificacao.html"><span class="nav-icon">$</span>Precificação</a>
+<a class="nav-item" href="media.html"><span class="nav-icon">▧</span>Media</a>
+<a class="nav-item" href="sobre.html"><span class="nav-icon">ⓘ</span>Sobre</a>
+<a class="nav-item" href="regras.html"><span class="nav-icon">§</span>Regras</a>
+<a class="nav-item active" href="comandos.html"><span class="nav-icon">⌘</span>Comandos</a><a class="nav-item" href="/streamer/index.php"><span class="nav-icon">✦</span>Creators</a>
+<a class="nav-item" href="#" data-status-open><span class="nav-icon">◉</span>Status</a>
+</nav>
+<div class="top-actions"><a class="top-account" href="conta.html">Conta →</a></div>
+</header>
+
+<main class="main-content commands-page">
+<div class="commands-bg"></div><div class="commands-overlay"></div>
+<div class="breadcrumb-bar"><span>Condado Carmesim</span><b>/</b><strong>Comandos</strong></div>
+<section class="commands-section">
+<div class="commands-wrap">
+<div class="commands-heading">
+<span class="commands-kicker">COMANDOS DOS PLAYERS</span>
+<h1>Comandos</h1>
+<p>Consulte os comandos disponibilizados aos jogadores. Esta lista é atualizada automaticamente a partir do Carmesim Creators.</p>
+</div>
+<div class="commands-tools">
+<input id="commandSearch" class="commands-search" type="search" placeholder="Pesquisar comando ou descrição...">
+<div id="commandCount" class="commands-count">Carregando comandos...</div>
+</div>
+<div class="commands-card" id="commandsList">
+<div class="commands-state">Carregando comandos do Creators...</div>
+</div>
+<div class="commands-source">Informações exibidas diretamente do cadastro público de comandos do Carmesim Creators.</div>
+</div>
+</section>
+
+<footer class="footer"><span>© 2026 Group Carmesim</span><span>RedM Roleplay</span><span><a class="terms-link" href="termos.html">Termos de Serviço e Privacidade</a></span><div class="developer-credit">Desenvolvido por <strong>luciferms666</strong></div></footer>
+</main>
+
+<div class="status-overlay" id="statusOverlay"></div>
+<aside class="status-drawer" id="statusDrawer">
+<div class="status-head"><button class="status-close" id="statusClose" type="button">×</button><span class="section-kicker">CONDADO CARMESIM</span><h2>Status dos Servidores</h2><p>Verificação em tempo real do servidor RedM e da conexão CFX.</p></div>
+<div class="status-live-grid"><div class="status-live-card" id="redmStatusCard"><div class="status-live-icon">●</div><div><span>Servidor RedM</span><strong id="redmStatusText">Verificando...</strong></div></div><div class="status-live-card" id="cfxStatusCard"><div class="status-live-icon">↗</div><div><span>Conexão CFX</span><strong id="cfxStatusText">Verificando...</strong></div></div></div>
+<div class="status-list"><div class="status-server"><div class="status-server-title"><strong>Condado Carmesim</strong><span class="status-badge" id="classicBadge">Verificando</span></div><div class="status-row"><span>Servidor</span><span class="status-value" id="classicServerValue"><i></i>Verificando...</span></div><div class="status-row"><span>Jogadores</span><span class="status-value" id="classicPlayersValue"><i></i>-- online</span></div></div></div>
+<div class="status-refresh"><span>Atualização automática</span><strong>60 segundos</strong><small>Última verificação: <b id="statusLastUpdate">--:--:--</b></small></div>
+</aside>
+
+<script src="../app.js?v=11"></script>
+<script>
+let allCommands=[];
+const list=document.getElementById('commandsList');
+const search=document.getElementById('commandSearch');
+const count=document.getElementById('commandCount');
+
+function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
+function renderCommands(){
+  const q=(search.value||'').trim().toLowerCase();
+  const rows=allCommands.filter(c=>(c.name+' '+c.command+' '+c.description).toLowerCase().includes(q));
+  count.textContent=rows.length+' comando'+(rows.length===1?'':'s');
+  if(!rows.length){list.innerHTML='<div class="commands-state">Nenhum comando encontrado.</div>';return;}
+  list.innerHTML=rows.map((c,i)=>`<div class="command-row">
+    <div class="command-number">${String(i+1).padStart(2,'0')}</div>
+    <div><div class="command-name">${esc(c.name)}</div><span class="command-code">${esc(c.command)}</span><p class="command-description">${esc(c.description)}</p></div>
+    <div class="command-status">Disponível</div>
+  </div>`).join('');
+}
+async function loadCommands(){
+  try{
+    const r=await fetch('../api/player_commands_public.php?ts='+Date.now(),{cache:'no-store'});
+    if(!r.ok) throw new Error('api');
+    const d=await r.json();
+    if(!d.ok) throw new Error(d.message||'api');
+    allCommands=Array.isArray(d.commands)?d.commands:[];
+    renderCommands();
+  }catch(e){
+    list.innerHTML='<div class="commands-state error">Não foi possível carregar os comandos do Carmesim Creators.</div>';
+    count.textContent='Indisponível';
+  }
+}
+search.addEventListener('input',renderCommands);
+loadCommands();
+setInterval(loadCommands,60000);
+</script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+<?php session_start(); unset($_SESSION['streamer_id']); header('Location: streamer-login.php'); exit;

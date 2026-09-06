@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sobre • Condado Carmesim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css?v=7">
+<style>
+/* =========================================================
+   SOBRE — CONDADO CARMESIM
+   Página institucional com background oficial
+   ========================================================= */
+html,body{min-height:100%;}
+body.sobre-page{
+  background:
+    linear-gradient(rgba(5,7,9,.84),rgba(5,7,9,.90)),
+    url("../assets/images/background.webp") center top / cover fixed no-repeat !important;
+}
+body.sobre-page .main-content{background:transparent !important;}
+body.sobre-page .breadcrumb-bar{background:rgba(10,12,15,.78);backdrop-filter:blur(8px);}
+
+.about-wrap{position:relative;max-width:1180px;margin:0 auto;padding:56px 34px 86px;}
+
+.about-hero{
+  position:relative;
+  min-height:430px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:18px;
+  background:linear-gradient(180deg,rgba(10,12,15,.46),rgba(10,12,15,.76));
+  box-shadow:0 25px 70px rgba(0,0,0,.38),inset 0 1px rgba(255,255,255,.04);
+}
+.about-hero:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at center,rgba(143,37,37,.22),transparent 52%);
+  pointer-events:none;
+}
+.about-hero-inner{position:relative;z-index:2;max-width:850px;padding:55px 30px;}
+.about-mark{width:68px;height:68px;margin:0 auto 22px;display:grid;place-items:center;border-radius:16px;color:#d4af37;font-size:28px;background:rgba(212,175,55,.10);border:1px solid rgba(212,175,55,.28);box-shadow:0 0 35px rgba(212,175,55,.08);}
+.about-kicker{display:block;color:#d4af37;font-size:10px;font-weight:700;letter-spacing:3px;margin-bottom:12px;}
+.about-hero h1{margin:0;color:#f5f1e9;font:700 clamp(34px,5vw,58px)/1.08 Cinzel,Georgia,serif;text-shadow:0 4px 20px rgba(0,0,0,.55);}
+.about-hero h1 span{color:#d4af37;}
+.about-lead{max-width:720px;margin:22px auto 0;color:#c2c6cd;font-size:14px;line-height:1.9;}
+
+.about-section{margin-top:34px;padding:38px 42px;border:1px solid rgba(255,255,255,.09);border-radius:16px;background:rgba(15,17,21,.78);backdrop-filter:blur(8px);box-shadow:0 20px 55px rgba(0,0,0,.25);}
+.about-section-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.08);}
+.about-section-heading .kicker{color:#d4af37;font-size:9px;font-weight:700;letter-spacing:2.5px;}
+.about-section-heading h2{margin:7px 0 0;color:#f1eee7;font:700 27px/1.2 Cinzel,Georgia,serif;}
+.about-section-heading p{max-width:390px;margin:0;color:#777e89;font-size:11px;line-height:1.7;text-align:right;}
+.about-text{display:grid;grid-template-columns:1fr 1fr;gap:28px 42px;}
+.about-text p{margin:0;color:#aab0ba;font-size:13px;line-height:1.95;}
+.about-text strong{color:#eee9de;font-weight:600;}
+.about-text .full{grid-column:1/-1;}
+
+.about-panels{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:34px;}
+.about-panel{padding:28px;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(24,26,31,.76);}
+.about-panel .panel-icon{width:44px;height:44px;display:grid;place-items:center;border-radius:11px;margin-bottom:18px;color:#d4af37;background:rgba(212,175,55,.09);border:1px solid rgba(212,175,55,.15);font-size:18px;}
+.about-panel h3{margin:0 0 11px;color:#f1eee7;font:700 20px/1.25 Cinzel,Georgia,serif;}
+.about-panel p{margin:0;color:#a2a8b2;font-size:12px;line-height:1.9;}
+
+.about-quote{margin-top:34px;padding:38px 42px;text-align:center;border:1px solid rgba(212,175,55,.18);border-radius:16px;background:linear-gradient(120deg,rgba(143,37,37,.18),rgba(212,175,55,.055),rgba(12,14,17,.84));}
+.about-quote .quote-kicker{color:#d4af37;font-size:9px;font-weight:700;letter-spacing:2.5px;}
+.about-quote h2{margin:10px 0 10px;color:#f5f1e9;font:700 clamp(24px,3vw,34px) Cinzel,Georgia,serif;}
+.about-quote p{margin:0;color:#a9afb8;font-size:12px;line-height:1.8;}
+
+.about-team{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px;}
+.team-card{padding:24px 18px;text-align:center;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.08);border-radius:12px;background:rgba(12,14,17,.62);}
+.team-card strong{display:block;color:#f1eee7;font:700 17px Cinzel,Georgia,serif;}
+.team-avatar{width:92px;height:92px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 14px;border:2px solid rgba(212,175,55,.55);box-shadow:0 0 28px rgba(212,175,55,.12);background:#16191d;}
+.team-avatar-placeholder{display:grid;place-items:center;width:92px;height:92px;border-radius:50%;margin:0 auto 14px;color:#d4af37;font-size:28px;border:2px solid rgba(212,175,55,.35);background:rgba(212,175,55,.06);}
+.team-card span{display:block;margin-top:6px;color:#d4af37;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;}
+.team-card small{display:block;margin-top:10px;color:#727985;font-size:9px;line-height:1.5;}
+.team-note{margin:22px 0 0;text-align:center;color:#777e88;font-size:10px;line-height:1.7;}
+
+.about-end{margin-top:36px;text-align:center;padding:16px;color:#d4af37;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;}
+
+.public-collaborators{margin-top:26px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);}
+.collab-heading{text-align:center;margin-bottom:18px;}
+.collab-heading span{display:block;color:#d4af37;font-size:9px;font-weight:700;letter-spacing:2.5px;}
+.collab-heading strong{display:block;margin-top:6px;color:#f1eee7;font:700 22px Cinzel,Georgia,serif;}
+.collab-heading small{display:block;margin-top:6px;color:#777e88;font-size:10px;}
+.collab-public-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;}
+.collab-public-card{padding:20px 14px;text-align:center;border:1px solid rgba(255,255,255,.08);border-radius:12px;background:rgba(12,14,17,.62);}
+.collab-public-card img,.collab-public-avatar{width:70px;height:70px;border-radius:50%;object-fit:cover;margin:0 auto 12px;border:1px solid rgba(212,175,55,.35);}
+.collab-public-avatar{display:grid;place-items:center;color:#d4af37;background:rgba(212,175,55,.06);font-size:22px;}
+.collab-public-card strong{display:block;color:#f1eee7;font:700 15px Cinzel,Georgia,serif;}
+.collab-public-card span{display:block;margin-top:5px;color:#d4af37;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
+.collab-public-card small{display:block;margin-top:9px;color:#777e88;font-size:9px;line-height:1.5;}
+@media(max-width:900px){.collab-public-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:520px){.collab-public-grid{grid-template-columns:1fr;}}
+
+@media(max-width:800px){
+  .about-wrap{padding:35px 20px 65px;}
+  .about-hero{min-height:380px;}
+  .about-section{padding:28px 24px;}
+  .about-section-heading{display:block;}
+  .about-section-heading p{margin-top:10px;text-align:left;}
+  .about-text,.about-panels{grid-template-columns:1fr;}
+  .about-text .full{grid-column:auto;}
+  .about-team{grid-template-columns:1fr;}
+}
+@media(max-width:520px){
+  .about-wrap{padding-left:12px;padding-right:12px;}
+  .about-hero-inner{padding:45px 18px;}
+  .about-hero h1{font-size:32px;}
+  .about-lead{font-size:12px;}
+  .about-section{padding:23px 18px;}
+  .about-section-heading h2{font-size:23px;}
+  .about-text p{font-size:12px;}
+  .about-quote{padding:28px 20px;}
+}
+</style>
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon.png">
+</head>
+<body class="sobre-page">
+<header class="top-panel">
+<a class="top-brand" href="../index.html">
+  <div class="top-brand-logo"><img src="../assets/images/logo.webp" alt="Logo Carmesim"></div>
+  <div><strong>CARMESIM</strong><span>CONDADO • REDM</span></div>
+</a>
+<button class="mobile-menu" id="mobileMenu" aria-label="Menu">☰</button>
+<nav class="top-nav" id="topNav">
+  <a class="nav-item" href="../index.html"><span class="nav-icon">⌂</span>Home</a>
+  <a class="nav-item" href="conexao.html"><span class="nav-icon">⌁</span>Conexão</a>
+  <a class="nav-item" href="empresas.html"><span class="nav-icon">▣</span>Empresas</a><a class="nav-item" href="precificacao.html"><span class="nav-icon">$</span>Precificação</a>
+  <a class="nav-item" href="media.html"><span class="nav-icon">▧</span>Media</a>
+  <a class="nav-item active" href="sobre.html"><span class="nav-icon">ⓘ</span>Sobre</a>
+  <a class="nav-item" href="regras.html"><span class="nav-icon">§</span>Regras</a>
+  <a class="nav-item" href="comandos.html"><span class="nav-icon">↗</span>Comandos</a><a class="nav-item" href="/streamer/index.php"><span class="nav-icon">✦</span>Creators</a>
+  <a class="nav-item" href="#" data-status-open><span class="nav-icon">◉</span>Status</a>
+</nav>
+<div class="top-actions"><a class="top-account" href="conta.html">Conta →</a></div>
+</header>
+
+<main class="main-content">
+  <div class="breadcrumb-bar"><span>Condado Carmesim</span><b>/</b><strong>Sobre</strong></div>
+
+  <div class="about-wrap">
+    <section class="about-hero">
+      <div class="about-hero-inner">
+        <div class="about-mark">✦</div>
+        <span class="about-kicker">CONDADO CARMESIM</span>
+        <h1>Um novo território.<br><span>Uma nova história.</span></h1>
+        <p class="about-lead">Um universo de Roleplay construído para unir liberdade, imersão e narrativa em um mundo onde cada jogador pode deixar a sua marca.</p>
+      </div>
+    </section>
+
+    <section class="about-section">
+      <div class="about-section-heading">
+        <div><span class="kicker">NOSSA ORIGEM</span><h2>O nascimento do Condado</h2></div>
+        <p>Uma visão própria, construída com cuidado desde os primeiros passos.</p>
+      </div>
+      <div class="about-text">
+        <p>O <strong>Condado Carmesim</strong> nasceu de uma visão: criar um universo de <strong>Roleplay</strong> onde liberdade, imersão e narrativa caminham lado a lado.</p>
+        <p>Idealizado pelos <strong>CEOs Jessy e Luci</strong>, o projeto começou a ser desenvolvido em <strong>setembro de 2026</strong>, com o propósito de construir uma experiência própria, cuidadosamente planejada e capaz de oferecer aos jogadores um mundo vivo, dinâmico e repleto de possibilidades.</p>
+        <p>À frente desse projeto estão os <strong>CEOs Jessy e Luci</strong>, juntamente com o <strong>COO Matheus</strong> e os demais colaboradores que fazem parte da construção do Condado Carmesim.</p>
+        <p>Cada pessoa envolvida contribui para transformar ideias em sistemas, experiências e histórias, trabalhando para construir uma comunidade sólida e um universo que possa evoluir continuamente.</p>
+      </div>
+    </section>
+
+    <div class="about-panels">
+      <article class="about-panel">
+        <div class="panel-icon">✦</div>
+        <h3>Uma experiência construída para durar</h3>
+        <p>O <strong>Red Dead Redemption / RedM</strong> proporciona o cenário, mas são as pessoas que dão vida ao Condado. Nossa proposta é criar um ambiente onde <strong>cada história tenha importância</strong>, onde diferentes caminhos possam se cruzar e onde as escolhas dos jogadores possam influenciar o mundo ao seu redor.</p>
+      </article>
+      <article class="about-panel">
+        <div class="panel-icon">◆</div>
+        <h3>Um mundo em constante evolução</h3>
+        <p>O <strong>Condado Carmesim</strong> não foi criado para ser apenas uma experiência passageira. A intenção é construir, junto com a comunidade, um universo que possa crescer e evoluir com o tempo, recebendo novas possibilidades, sistemas, histórias e experiências.</p>
+      </article>
+    </div>
+
+    <section class="about-section">
+      <div class="about-section-heading">
+        <div><span class="kicker">SUA HISTÓRIA</span><h2>Aqui, não existe apenas um caminho.</h2></div>
+        <p>O mundo oferece possibilidades. O jogador decide o que fazer com elas.</p>
+      </div>
+      <div class="about-text">
+        <p>Profissões, empresas, organizações, comércio, economia e relações sociais fazem parte de uma estrutura pensada para oferecer diferentes possibilidades de desenvolvimento.</p>
+        <p>Cada jogador poderá construir sua própria trajetória, conquistar seu espaço, criar oportunidades, estabelecer alianças, enfrentar rivalidades e participar de acontecimentos que poderão marcar a história do Condado.</p>
+        <p class="full">Cada atualização, cada ideia e cada novo capítulo fazem parte de um objetivo maior: <strong>criar um lugar onde os jogadores não apenas participem de uma história, mas façam parte dela.</strong></p>
+      </div>
+    </section>
+
+    <section class="about-quote">
+      <span class="quote-kicker">QUEM CONSTRÓI ESSA HISTÓRIA</span>
+      <h2>O próximo capítulo será escrito por todos nós.</h2>
+      <p>O Condado está apenas começando.</p>
+      <div class="about-team" id="leadershipTeam">
+        <div class="team-card"><div class="team-avatar-placeholder">✦</div><strong>Jessy</strong><span>CEO</span><small>Idealizadora do Condado Carmesim</small></div>
+        <div class="team-card"><div class="team-avatar-placeholder">✦</div><strong>Luci</strong><span>CEO</span><small>Idealizador do Condado Carmesim</small></div>
+        <div class="team-card"><div class="team-avatar-placeholder">✦</div><strong>Matheus</strong><span>COO</span><small>Parte da liderança e construção do projeto</small></div>
+      </div>
+      <div class="public-collaborators" id="publicCollaborators" style="display:none">
+        <div class="collab-heading"><span>COLABORADORES</span><strong>Equipe Carmesim</strong><small>Pessoas que ajudam a transformar ideias em realidade.</small></div>
+        <div class="collab-public-grid" id="collaboratorGrid"></div>
+      </div>
+      <p class="team-note">Juntamente com todos os colaboradores que fazem parte dessa construção.</p>
+    </section>
+
+    <div class="about-end">Bem-vindos ao Condado Carmesim.</div>
+  </div>
+
+  <footer class="footer">
+    <span>© 2026 Group Carmesim</span><span>RedM Roleplay</span>
+    <span><a class="terms-link" href="termos.html">Termos de Serviço e Privacidade</a></span>
+<div class="developer-credit">Desenvolvido por <a class="developer-discord" href="https://discord.com/users/207712204890439680" target="_blank" rel="noopener noreferrer"><strong>luciferms666</strong></a></div>
+  </footer>
+</main>
+<script>
+(function(){
+  function esc(v){return String(v??'').replace(/[&<>'"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#039;'}[c]});}
+  function leaderCard(x){var avatar=x.discord_avatar?'<img class="team-avatar" src="'+esc(x.discord_avatar)+'" alt="Avatar de '+esc(x.name)+'">':'<div class="team-avatar-placeholder">✦</div>';return '<div class="team-card">'+avatar+'<strong>'+esc(x.name)+'</strong><span>'+esc(x.role_title)+'</span><small>'+esc(x.description||'')+'</small></div>';}
+  function collabCard(x){var avatar=x.discord_avatar?'<img src="'+esc(x.discord_avatar)+'" alt="Avatar de '+esc(x.name)+'">':'<div class="collab-public-avatar">✦</div>';return '<div class="collab-public-card">'+avatar+'<strong>'+esc(x.name)+'</strong><span>'+esc(x.role_title)+'</span>'+(x.description?'<small>'+esc(x.description)+'</small>':'')+'</div>';}
+  fetch('../api/site-team.php',{cache:'no-store'}).then(function(r){return r.json()}).then(function(data){if(!data.success)return;var lead=document.getElementById('leadershipTeam');if(lead&&data.leadership&&data.leadership.length){lead.innerHTML=data.leadership.slice(0,3).map(leaderCard).join('');}var grid=document.getElementById('collaboratorGrid');var box=document.getElementById('publicCollaborators');if(grid&&data.collaborators&&data.collaborators.length){grid.innerHTML=data.collaborators.map(collabCard).join('');box.style.display='block';}}).catch(function(){});
+})();
+</script>
+
+<div class="status-overlay" id="statusOverlay"></div>
+<aside class="status-drawer" id="statusDrawer">
+  <div class="status-head">
+    <button class="status-close" id="statusClose" type="button">×</button>
+    <span class="section-kicker">CONDADO CARMESIM</span>
+    <h2>Status dos Servidores</h2>
+    <p>Verificação em tempo real do servidor RedM e da conexão CFX.</p>
+  </div>
+  <div class="status-live-grid">
+    <div class="status-live-card" id="redmStatusCard"><div class="status-live-icon">●</div><div><span>Servidor RedM</span><strong id="redmStatusText">Verificando...</strong></div></div>
+    <div class="status-live-card" id="cfxStatusCard"><div class="status-live-icon">↗</div><div><span>Conexão CFX</span><strong id="cfxStatusText">Verificando...</strong></div></div>
+  </div>
+  <div class="status-list">
+    <div class="status-server">
+      <div class="status-server-title"><strong>Condado Carmesim</strong><span class="status-badge" id="classicBadge">Verificando</span></div>
+      <div class="status-row"><span>Servidor</span><span class="status-value" id="classicServerValue"><i></i>Verificando...</span></div>
+      <div class="status-row"><span>Jogadores</span><span class="status-value" id="classicPlayersValue"><i></i>-- online</span></div>
+    </div>
+  </div>
+  <div class="status-refresh"><span>Atualização automática</span><strong>60 segundos</strong><small>Última verificação: <b id="statusLastUpdate">--:--:--</b></small></div>
+</aside>
+
+<script>
+const menu=document.getElementById("mobileMenu"),nav=document.getElementById("topNav");
+if(menu&&nav)menu.addEventListener("click",()=>nav.classList.toggle("open"));
+
+
+
+const overlay=document.getElementById("statusOverlay"),drawer=document.getElementById("statusDrawer"),close=document.getElementById("statusClose");
+function openStatus(){if(drawer&&overlay){drawer.classList.add("open");overlay.classList.add("open");document.body.style.overflow="hidden";}}
+function closeStatus(){if(drawer&&overlay){drawer.classList.remove("open");overlay.classList.remove("open");document.body.style.overflow="";}}
+document.querySelectorAll("[data-status-open]").forEach(el=>el.addEventListener("click",e=>{e.preventDefault();openStatus();}));
+if(close)close.addEventListener("click",closeStatus);
+if(overlay)overlay.addEventListener("click",closeStatus);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeStatus();});
+</script>
+</body>
+</html>

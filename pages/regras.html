@@ -1,0 +1,185 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Regras • Condado Carmesim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+*{box-sizing:border-box}
+html,
+body{padding-top:78px}
+a{text-decoration:none;color:inherit}
+.top-panel{position:fixed;top:0;left:0;right:0;width:100%;height:78px;z-index:9999;display:flex;align-items:center;background:#101114;border-bottom:1px solid rgba(255,255,255,.09);box-shadow:0 5px 25px rgba(0,0,0,.4)}
+.top-brand{width:220px;height:78px;flex:0 0 220px;display:flex;align-items:center;gap:10px;padding:8px 14px;border-right:1px solid rgba(255,255,255,.07)}
+.top-brand-logo{width:46px;height:58px;display:flex;align-items:center;justify-content:center}
+.top-brand-logo img{width:54px;height:54px;object-fit:contain}
+.top-brand strong{display:block;font:700 17px Cinzel,Georgia,serif;letter-spacing:1.3px}
+.top-brand span{display:block;font-size:8px;color:#737780;letter-spacing:1px}
+.top-nav{height:100%;display:flex;align-items:center;gap:3px;padding:0 10px;flex:1;overflow-x:auto;scrollbar-width:none}
+.top-nav::-webkit-scrollbar{display:none}
+.nav-item{height:42px;padding:0 13px;display:flex;align-items:center;gap:8px;border-radius:8px;color:#a4a8b0;font-size:12px;white-space:nowrap}
+.nav-item:hover,.nav-item.active{background:#292c32;color:#fff}
+.nav-icon{color:#d4af37;font-size:13px}
+.top-actions{padding:0 14px;flex:0 0 auto}
+.top-account{height:38px;padding:0 13px;display:flex;align-items:center;border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#a4a8b0;font-size:11px;white-space:nowrap}
+.top-account:hover{background:#202329;color:#fff}
+.mobile-menu{display:none;border:0;background:none;color:#fff;font-size:22px;cursor:pointer}
+.main-content{width:100%;min-height:calc(100vh - 78px)}
+.breadcrumb-bar{height:48px;padding:0 34px;display:flex;align-items:center;background:#111214;border-bottom:1px solid rgba(255,255,255,.06);font-size:11px;color:#737780}
+.breadcrumb-bar b{margin:0 9px;color:#555962}.breadcrumb-bar strong{color:#f2f3f5}
+.hero{min-height:580px;position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.07);background:#111214}
+.hero-background{position:absolute;inset:0;background-image:linear-gradient(90deg,rgba(8,9,11,.98),rgba(8,9,11,.80) 52%,rgba(8,9,11,.45)),url("../assets/images/background.webp");background-size:cover;background-position:center;background-repeat:no-repeat}
+.hero-content{position:relative;z-index:2;padding:28px 7% 65px}
+.hero-logo-space{height:195px;display:flex;justify-content:center;align-items:flex-start}
+.hero-logo-space img{width:min(450px,60vw);height:185px;object-fit:contain;object-position:center top;filter:drop-shadow(0 10px 20px rgba(0,0,0,.6))}
+.hero-copy{max-width:780px}.eyebrow,.section-kicker{color:#d4af37;font-size:10px;font-weight:600;letter-spacing:2px}
+.hero h1{margin:10px 0 0;font:700 clamp(36px,4vw,55px)/1.05 Cinzel,Georgia,serif}.hero h1 span{color:#ddd4bb}
+.hero p{max-width:590px;margin:16px 0 0;color:#a4a8b0;line-height:1.8;font-size:13px}
+.hero-actions{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
+.btn{min-height:42px;padding:0 17px;border-radius:7px;display:inline-flex;align-items:center;font-size:12px;font-weight:600}
+.btn-primary{background:#8f2525}.btn-secondary{border:1px solid #ffffff1f;background:#ffffff0a}
+.content-section{padding:52px 7%}.section-heading{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:24px}
+.section-heading h2{font:700 25px Cinzel,Georgia,serif;margin:7px 0 0}.section-heading p{max-width:430px;color:#a4a8b0;font-size:12px}
+.feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.feature-card{min-height:118px;padding:22px;display:flex;align-items:center;gap:17px;border:1px solid #ffffff0d;border-radius:12px;background:#181a1e}
+.feature-card>strong{width:43px;height:43px;display:grid;place-items:center;border-radius:9px;color:#d4af37;background:#d4af3712}
+.feature-card h3{font-size:14px;margin:0 0 5px}.feature-card p{color:#a4a8b0;font-size:11px;margin:0}.feature-card em{margin-left:auto;color:#737780;font-style:normal}
+.footer{padding:22px 7%;display:flex;justify-content:space-between;border-top:1px solid #ffffff0d;color:#737780;font-size:10px}
+.status-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;visibility:hidden;transition:.2s;z-index:10000}
+.status-overlay.open{opacity:1;visibility:visible}
+.status-drawer{position:fixed;top:78px;right:0;width:min(390px,92vw);height:calc(100vh - 78px);background:#15171b;border-left:1px solid rgba(255,255,255,.09);box-shadow:-18px 0 55px rgba(0,0,0,.45);transform:translateX(105%);transition:transform .25s ease;z-index:10001;overflow:auto}
+.status-drawer.open{transform:translateX(0)}
+.status-head{padding:22px;background:linear-gradient(135deg,#6f1e1e,#181a1e 70%);border-bottom:1px solid rgba(255,255,255,.08);position:relative}
+.status-head h2{margin:6px 0 0;font:700 24px Cinzel,Georgia,serif}.status-head p{margin:7px 0 0;color:#b5b8be;font-size:11px;line-height:1.6}
+.status-close{position:absolute;right:14px;top:14px;width:34px;height:34px;border:1px solid #ffffff20;border-radius:8px;background:#0003;color:#fff;cursor:pointer;font-size:18px}
+.status-list{padding:18px}.status-server{padding:18px;margin-bottom:12px;border:1px solid #ffffff10;border-radius:12px;background:#1b1d21}
+.status-server-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}.status-server-title strong{font:700 16px Cinzel,Georgia,serif}
+.status-badge{padding:5px 9px;border-radius:999px;font-size:9px;font-weight:700;text-transform:uppercase}
+.status-badge.online{color:#65d488;background:#3ba55d1f;border:1px solid #3ba55d55}.status-badge.offline{color:#ff7373;background:#8f25251f;border:1px solid #8f252555}
+.status-row{min-height:40px;padding:0 11px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #ffffff0d;color:#a4a8b0;font-size:11px}
+.status-value{display:flex;align-items:center;gap:7px;font-weight:600}.status-value i{width:8px;height:8px;border-radius:50%;display:block}
+.status-value.online{color:#54c878}.status-value.online i{background:#3ba55d}.status-value.offline{color:#f05b5b}.status-value.offline i{background:#c93636}
+@media(max-width:850px){body{padding-top:68px}.top-panel{height:68px}.top-brand{height:68px;width:auto;flex:1;border-right:0}.top-nav{display:none;position:absolute;top:68px;left:0;right:0;height:auto;background:#101114;border-bottom:1px solid #ffffff14;padding:10px;flex-direction:column;align-items:stretch}.top-nav.open{display:flex}.nav-item{width:100%}.mobile-menu{display:block}.top-actions{padding:0 10px}.hero-content,.content-section{padding-left:5%;padding-right:5%}.status-drawer{top:68px;height:calc(100vh - 68px)}}
+@media(max-width:650px){.hero{min-height:560px}.hero-logo-space{height:170px}.hero-logo-space img{width:min(390px,90vw);height:160px}.hero h1{font-size:36px}.section-heading{display:block}.feature-grid{grid-template-columns:1fr}.breadcrumb-bar{padding:0 18px}}
+
+
+.site-footer{border-top:1px solid rgba(255,255,255,.07);padding:16px 7%;background:#0d0f11}
+.developer-credit{display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;color:#737780;font-size:10px;text-align:center}
+.developer-credit strong{color:#d4af37;font-weight:600}
+.developer-credit span{color:#555b65}
+
+.developer-discord{color:inherit;text-decoration:none;display:inline-flex;align-items:center}
+.developer-discord strong{color:#d4af37;font-weight:600;transition:.2s}
+.developer-discord:hover strong{color:#fff;text-decoration:underline}
+
+.status-live-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:18px;border-bottom:1px solid rgba(255,255,255,.07)}
+.status-live-card{min-height:76px;padding:13px;display:flex;align-items:center;gap:11px;border:1px solid rgba(255,255,255,.08);border-radius:10px;background:#1b1d21}
+.status-live-icon{width:30px;height:30px;display:grid;place-items:center;border-radius:8px;background:#d4af3712;color:#d4af37;font-size:14px}
+.status-live-card span{display:block;color:#777d87;font-size:9px;text-transform:uppercase;letter-spacing:.7px}
+.status-live-card strong{display:block;margin-top:4px;color:#d4d7dc;font-size:11px}
+.status-live-card.online{border-color:#3ba55d55}.status-live-card.online .status-live-icon{background:#3ba55d1c;color:#55d47b}.status-live-card.online strong{color:#55d47b}
+.status-live-card.offline{border-color:#d94a4a55}.status-live-card.offline .status-live-icon{background:#d94a4a1c;color:#f06b6b}.status-live-card.offline strong{color:#f06b6b}
+.status-live-card.checking{border-color:#d4af3733}
+.status-refresh{margin:0 18px 18px;padding:13px;border-top:1px solid rgba(255,255,255,.07);color:#777d87;font-size:9px}
+.status-refresh span{margin-right:7px}.status-refresh strong{color:#d4af37}.status-refresh small{display:block;margin-top:6px;font-size:9px}
+@media(max-width:650px){.status-live-grid{grid-template-columns:1fr}}
+
+.rules-section{padding:48px 0 70px}
+.rules-card{max-width:920px;margin:0 auto;display:flex;align-items:flex-start;gap:24px;padding:30px;border:1px solid rgba(255,255,255,.09);border-radius:14px;background:rgba(20,22,26,.92);box-shadow:0 20px 55px rgba(0,0,0,.28)}
+.rules-icon{width:54px;height:54px;flex:0 0 54px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.22);color:#d4af37;font:700 30px Georgia,serif}
+.rules-copy{flex:1}.rules-copy h2{font:700 30px Cinzel,Georgia,serif;margin:8px 0 12px;color:#f1eee7}.rules-copy p{margin:0 0 12px;color:#9da2aa;font-size:13px;line-height:1.8;max-width:760px}.rules-copy .rules-note{color:#c4c7cd}.rules-copy .btn{display:inline-flex;margin-top:8px;text-decoration:none}
+@media(max-width:650px){.rules-card{padding:22px;gap:15px}.rules-icon{width:44px;height:44px;flex-basis:44px;font-size:24px}.rules-copy h2{font-size:24px}}
+
+</style><link rel="stylesheet" href="../style.css?v=7"><link rel="icon" type="image/x-icon" href="../favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon.png">
+</head><body class="immersive-page"><header class="top-panel">
+<a class="top-brand" href="../index.html"><div class="top-brand-logo"><img src="../assets/images/logo.webp" alt="Logo Carmesim"></div><div><strong>CARMESIM</strong><span>CONDADO • REDM</span></div></a>
+<button class="mobile-menu" id="mobileMenu" aria-label="Menu">☰</button>
+<nav class="top-nav" id="topNav"><a class="nav-item" href="../index.html"><span class="nav-icon">⌂</span>Home</a><a class="nav-item" href="conexao.html"><span class="nav-icon">⌁</span>Conexão</a><a class="nav-item" href="empresas.html"><span class="nav-icon">▣</span>Empresas</a><a class="nav-item" href="precificacao.html"><span class="nav-icon">$</span>Precificação</a><a class="nav-item" href="media.html"><span class="nav-icon">▧</span>Media</a><a class="nav-item" href="sobre.html"><span class="nav-icon">ⓘ</span>Sobre</a><a class="nav-item active" href="regras.html"><span class="nav-icon">§</span>Regras</a><a class="nav-item" href="comandos.html"><span class="nav-icon">↗</span>Comandos</a><a class="nav-item" href="/streamer/index.php"><span class="nav-icon">✦</span>Creators</a><a class="nav-item" href="#" data-status-open><span class="nav-icon">◉</span>Status</a></nav>
+<div class="top-actions"><a class="top-account" href="conta.html">Conta →</a></div>
+</header>
+<main class="main-content"><div class="breadcrumb-bar"><span>Condado Carmesim</span><b>/</b><strong>Regras</strong></div>
+
+<section class="content-section rules-section">
+  <div class="rules-card">
+    <div class="rules-icon">§</div>
+    <div class="rules-copy">
+      <span class="section-kicker">REGRAS DO CONDADO</span>
+      <h2>Fique por dentro das regras</h2>
+      <p>
+        Para manter o Condado Carmesim organizado, divertido e com uma boa experiência
+        para todos, é importante conhecer as regras que orientam nossa comunidade.
+        Antes de começar sua jornada, reserve alguns minutos para conhecer todas as
+        regras do condado.
+      </p>
+      <p class="rules-note">
+        As regras oficiais, orientações e informações importantes estão disponíveis
+        em nossa central de regras.
+      </p>
+      <a class="btn btn-primary" href="https://royalsgroup.gitbook.io/condadocarmesim"
+         target="_blank" rel="noopener noreferrer">
+        Ler as Regras do Condado ↗
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><span>© 2026 Group Carmesim</span><span>RedM Roleplay</span>
+<span><a class="terms-link" href="termos.html">Termos de Serviço e Privacidade</a></span>
+<div class="developer-credit">
+  Desenvolvido por <a class="developer-discord" href="https://discord.com/users/207712204890439680" target="_blank" rel="noopener noreferrer"><strong>luciferms666</strong></a>
+  
+</div>
+</footer></main><div class="status-overlay" id="statusOverlay"></div>
+<aside class="status-drawer" id="statusDrawer">
+<div class="status-head">
+  <button class="status-close" id="statusClose" type="button">×</button>
+  <span class="section-kicker">CONDADO CARMESIM</span>
+  <h2>Status dos Servidores</h2>
+  <p>Verificação em tempo real do servidor RedM e da conexão CFX.</p>
+</div>
+
+<div class="status-live-grid">
+  <div class="status-live-card" id="redmStatusCard">
+    <div class="status-live-icon">●</div>
+    <div><span>Servidor RedM</span><strong id="redmStatusText">Verificando...</strong></div>
+  </div>
+  <div class="status-live-card" id="cfxStatusCard">
+    <div class="status-live-icon">↗</div>
+    <div><span>Conexão CFX</span><strong id="cfxStatusText">Verificando...</strong></div>
+  </div>
+</div>
+
+<div class="status-list">
+  <div class="status-server">
+    <div class="status-server-title">
+      <strong>Condado Carmesim</strong>
+      <span class="status-badge" id="classicBadge">Verificando</span>
+    </div>
+    <div class="status-row"><span>Servidor</span><span class="status-value" id="classicServerValue"><i></i>Verificando...</span></div>
+    <div class="status-row"><span>Jogadores</span><span class="status-value" id="classicPlayersValue"><i></i>-- online</span></div>
+  </div>
+</div>
+
+<div class="status-refresh">
+  <span>Atualização automática</span>
+  <strong>60 segundos</strong>
+  <small>Última verificação: <b id="statusLastUpdate">--:--:--</b></small>
+</div>
+</aside><script>
+
+const menu=document.getElementById("mobileMenu");
+const nav=document.getElementById("topNav");
+if(menu&&nav)menu.addEventListener("click",()=>nav.classList.toggle("open"));
+
+const overlay=document.getElementById("statusOverlay");
+const drawer=document.getElementById("statusDrawer");
+const close=document.querySelector("[data-status-close]");
+function openStatus(){if(drawer&&overlay){drawer.classList.add("open");overlay.classList.add("open");document.body.style.overflow="hidden";}}
+function closeStatus(){if(drawer&&overlay){drawer.classList.remove("open");overlay.classList.remove("open");document.body.style.overflow="";}}
+document.querySelectorAll("[data-status-open]").forEach(el=>el.addEventListener("click",e=>{e.preventDefault();openStatus();}));
+if(close)close.addEventListener("click",closeStatus);
+if(overlay)overlay.addEventListener("click",closeStatus);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeStatus();});
+
+</script></body></html>

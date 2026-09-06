@@ -1,0 +1,36 @@
+{
+    "ok": true,
+    "updated_at": "2026-09-06T06:11:01+00:00",
+    "updated_unix": 1788675060,
+    "next_refresh_in": 300,
+    "youtube": [],
+    "twitch": [
+        {
+            "platform": "twitch",
+            "creator": "luazinha_ofc",
+            "title": "CARMESIM ROLEPLAY",
+            "category": "Red Dead Redemption II",
+            "views": 30,
+            "url": "https://www.twitch.tv/luazinha_ofc",
+            "live": true,
+            "published_at": "2026-08-11T18:00:00-03:00",
+            "creator_key": "luazinha_ofc",
+            "embedUrl": "https://player.twitch.tv/?channel=luazinha_ofc&parent=carmesimroleplay.gamer.free&autoplay=false"
+        }
+    ],
+    "items": [
+        {
+            "platform": "twitch",
+            "creator": "luazinha_ofc",
+            "title": "CARMESIM ROLEPLAY",
+            "category": "Red Dead Redemption II",
+            "views": 30,
+            "url": "https://www.twitch.tv/luazinha_ofc",
+            "live": true,
+            "published_at": "2026-08-11T18:00:00-03:00",
+            "creator_key": "luazinha_ofc",
+            "embedUrl": "https://player.twitch.tv/?channel=luazinha_ofc&parent=carmesimroleplay.gamer.free&autoplay=false"
+        }
+    ],
+    "errors": []
+}

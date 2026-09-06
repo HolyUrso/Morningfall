@@ -1,0 +1,22 @@
+FILTRO DA MEDIA — CARMESIM ROLEPLAY
+
+A busca automática usa SOMENTE estes dois termos:
+
+1. Carmesim Roleplay
+2. Condado Carmesim
+
+YouTube:
+- pesquisa os dois termos;
+- exige que "Carmesim Roleplay" ou "Condado Carmesim" apareça no título ou descrição;
+- ignora resultados apenas relacionados à palavra Carmesim;
+- não usa Carmesim RP, RedM Carmesim, Las Vegas ou outros termos.
+
+Twitch:
+- pesquisa somente "Carmesim Roleplay" e "Condado Carmesim";
+- prioriza transmissões ao vivo.
+
+Depois:
+- prioriza lives;
+- ordena conteúdos recentes;
+- remove criadores repetidos;
+- limita a 8 cards.

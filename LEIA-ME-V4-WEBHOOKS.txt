@@ -1,0 +1,37 @@
+MORNINGFALL CREATORS V4 — HISTÓRICO AUTOMÁTICO DISCORD
+
+1) INFINITYFREE
+Envie o conteúdo desta pasta para htdocs.
+
+2) SECRET DO CLOUDFLARE
+Abra:
+config/relay_secret.php
+
+Substitua:
+COLOQUE_AQUI_O_MESMO_SECRET_DO_CLOUDFLARE
+
+pelo mesmo valor usado no Secret RELAY_SECRET do Worker.
+
+NÃO compartilhe esse arquivo.
+
+3) CLOUDFLARE
+O Worker continua sendo o morningfall-relay já configurado.
+Não é necessário colocar o worker.js dentro do htdocs.
+
+4) EVENTOS ENVIADOS PARA A WEBHOOK INDIVIDUAL
+- Teste da webhook
+- VOD registrada
+- VOD excluída
+- Resgate solicitado
+- Resgate aprovado
+- Resgate entregue
+- Resgate cancelado
+
+As mensagens incluem data, duração, pontos, saldo/resgate e Staff quando aplicável.
+
+5) PONTUAÇÃO
+As VODs do mesmo streamer e mesma data continuam sendo somadas em HH:MM.
+A pontuação é recalculada quando uma VOD é cadastrada ou excluída.
+
+IMPORTANTE:
+Este pacote não contém o Secret real do Cloudflare. Configure config/relay_secret.php antes de usar.

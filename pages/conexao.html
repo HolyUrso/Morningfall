@@ -1,0 +1,183 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Conexão • Condado Carmesim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css?v=7"><link rel="icon" type="image/x-icon" href="../favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon.png">
+</head><body class="immersive-page"><header class="top-panel">
+<a class="top-brand" href="../index.html"><div class="top-brand-logo"><img src="../assets/images/logo.webp" alt="Logo Carmesim"></div><div><strong>CARMESIM</strong><span>CONDADO • REDM</span></div></a>
+<button class="mobile-menu" id="mobileMenu" aria-label="Menu">☰</button>
+<nav class="top-nav" id="topNav"><a class="nav-item" href="../index.html"><span class="nav-icon">⌂</span>Home</a><a class="nav-item active" href="conexao.html"><span class="nav-icon">⌁</span>Conexão</a><a class="nav-item" href="empresas.html"><span class="nav-icon">▣</span>Empresas</a><a class="nav-item" href="precificacao.html"><span class="nav-icon">$</span>Precificação</a><a class="nav-item" href="media.html"><span class="nav-icon">▧</span>Media</a><a class="nav-item" href="sobre.html"><span class="nav-icon">ⓘ</span>Sobre</a><a class="nav-item" href="regras.html"><span class="nav-icon">§</span>Regras</a><a class="nav-item" href="comandos.html"><span class="nav-icon">↗</span>Comandos</a><a class="nav-item" href="/streamer/index.php"><span class="nav-icon">✦</span>Creators</a><a class="nav-item" href="#" data-status-open><span class="nav-icon">◉</span>Status</a></nav>
+<div class="top-actions"><a class="top-account" href="conta.html">Conta →</a></div>
+</header>
+<main class="main-content"><div class="breadcrumb-bar"><span>Condado Carmesim</span><b>/</b><strong>Conexão</strong></div>
+
+<section class="content-section connection-section">
+  <div class="connection-card">
+    <div class="connection-top">
+      <div>
+        <span class="section-kicker">CONDADO CARMESIM</span>
+        <h2>Conecte-se ao Condado Carmesim</h2>
+        <p>Entre no servidor diretamente pelo RedM. As informações abaixo são atualizadas automaticamente.</p>
+      </div>
+      <div class="server-live" id="serverLive"><i></i><span id="serverLiveText">Verificando servidor...</span></div>
+    </div>
+
+    <div class="connection-grid">
+      <div class="connection-info">
+        <div class="connection-label">STATUS</div>
+        <div class="connection-value" id="serverStatus">Verificando...</div>
+      </div>
+      <div class="connection-info">
+        <div class="connection-label">JOGADORES</div>
+        <div class="connection-value" id="serverPlayers">-- online</div>
+      </div>
+      <div class="connection-info wide">
+        <div class="connection-label">SERVIDOR</div>
+        <div class="connection-value" id="serverName">Condado Carmesim</div>
+      </div>
+    </div>
+
+    <div class="connection-code">
+      <span>Connect</span>
+      <code id="connectCommand">connect 189.127.165.184:30120</code>
+    </div>
+
+    <div class="connection-actions">
+      <a class="btn btn-primary" id="enterRedM" href="redm://connect/189.127.165.184:30120">Entrar no RedM ↗</a>
+      <button class="btn btn-secondary" id="copyJoin" type="button">Copiar Connect</button>
+    </div>
+
+    <div class="connection-updated"><span>Próxima atualização em <strong id="nextConnectionUpdate">60s</strong></span> • 
+      <span>●</span> Atualizando automaticamente <b>•</b> Última atualização: <strong id="lastUpdate">--:--:--</strong>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><span>© 2026 Group Carmesim</span><span>RedM Roleplay</span>
+<span><a class="terms-link" href="termos.html">Termos de Serviço e Privacidade</a></span>
+<div class="developer-credit">
+  Desenvolvido por <a class="developer-discord" href="https://discord.com/users/207712204890439680" target="_blank" rel="noopener noreferrer"><strong>luciferms666</strong></a>
+  
+</div>
+</footer></main><div class="status-overlay" id="statusOverlay"></div>
+<aside class="status-drawer" id="statusDrawer">
+<div class="status-head">
+  <button class="status-close" id="statusClose" type="button">×</button>
+  <span class="section-kicker">CONDADO CARMESIM</span>
+  <h2>Status dos Servidores</h2>
+  <p>Verificação em tempo real do servidor RedM e da conexão CFX.</p>
+</div>
+
+<div class="status-live-grid">
+  <div class="status-live-card" id="redmStatusCard">
+    <div class="status-live-icon">●</div>
+    <div><span>Servidor RedM</span><strong id="redmStatusText">Verificando...</strong></div>
+  </div>
+  <div class="status-live-card" id="cfxStatusCard">
+    <div class="status-live-icon">↗</div>
+    <div><span>Conexão CFX</span><strong id="cfxStatusText">Verificando...</strong></div>
+  </div>
+</div>
+
+<div class="status-list">
+  <div class="status-server">
+    <div class="status-server-title">
+      <strong>Condado Carmesim</strong>
+      <span class="status-badge" id="classicBadge">Verificando</span>
+    </div>
+    <div class="status-row"><span>Servidor</span><span class="status-value" id="classicServerValue"><i></i>Verificando...</span></div>
+    <div class="status-row"><span>Jogadores</span><span class="status-value" id="classicPlayersValue"><i></i>-- online</span></div>
+  </div>
+</div>
+
+<div class="status-refresh">
+  <span>Atualização automática</span>
+  <strong>60 segundos</strong>
+  <small>Última verificação: <b id="statusLastUpdate">--:--:--</b></small>
+</div>
+</aside><script src="../app.js?v=5"></script>
+<script>
+const CONNECT_COMMAND='connect 189.127.165.184:30120';
+const REDM_URI='redm://connect/189.127.165.184:30120';
+const CFX_JOIN='https://cfx.re/join/m4zzggv';
+
+async function updateServer(){
+  const live=document.getElementById('serverLive');
+  const liveText=document.getElementById('serverLiveText');
+  const status=document.getElementById('serverStatus');
+  const players=document.getElementById('serverPlayers');
+  const name=document.getElementById('serverName');
+  const last=document.getElementById('lastUpdate');
+
+  try{
+    const r=await fetch('../api/server-status.php?code=m4zzggv&_='+Date.now(),{
+      method:'GET',
+      cache:'no-store',
+      headers:{'Accept':'application/json'}
+    });
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    const data=await r.json();
+    if(!data.ok) throw new Error('API');
+
+    const state=data.online ? 'online' : (data.status==='unknown' ? 'unknown' : 'offline');
+    if(live){
+      live.classList.remove('online','offline','unknown');
+      live.classList.add(state);
+    }
+    if(liveText) liveText.textContent=data.online ? 'ONLINE' : (data.status==='unknown' ? 'VERIFICANDO...' : 'OFFLINE');
+    if(status) status.textContent=data.online ? 'Online' : (data.status==='unknown' ? 'Verificando...' : 'Offline');
+    if(players) players.textContent=(data.players===null || data.players===undefined ? '--' : data.players)+' online';
+    if(name) name.textContent=data.hostname || 'Condado Carmesim';
+    if(last) last.textContent=new Date().toLocaleTimeString('pt-BR');
+  }catch(err){
+    if(live){
+      live.classList.remove('online','offline','unknown');
+      live.classList.add('unknown');
+    }
+    if(liveText) liveText.textContent='FALHA NA CONSULTA';
+    if(status) status.textContent='Falha na consulta';
+    if(players) players.textContent='-- online';
+    if(last) last.textContent=new Date().toLocaleTimeString('pt-BR');
+    console.error('Carmesim status:',err);
+  }
+}
+
+const copyBtn=document.getElementById('copyJoin');
+if(copyBtn) copyBtn.addEventListener('click',async()=>{
+  try{
+    await navigator.clipboard.writeText(CONNECT_COMMAND);
+    copyBtn.textContent='Connect copiado ✓';
+    setTimeout(()=>copyBtn.textContent='Copiar Connect',1800);
+  }catch(e){
+    prompt('Copie o comando:',CONNECT_COMMAND);
+  }
+});
+
+const enterBtn=document.getElementById('enterRedM');
+if(enterBtn) enterBtn.addEventListener('click',function(e){
+  e.preventDefault();
+  let fallback=setTimeout(()=>window.open(CFX_JOIN,'_blank','noopener'),1800);
+  const cancel=()=>{
+    clearTimeout(fallback);
+    window.removeEventListener('blur',cancel);
+  };
+  window.addEventListener('blur',cancel);
+  window.location.href=REDM_URI;
+});
+
+let connectionNext=60;
+const connectionCountdown=document.getElementById('nextConnectionUpdate');
+if(connectionCountdown) connectionCountdown.textContent=connectionNext+'s';
+setInterval(()=>{
+  connectionNext--;
+  if(connectionCountdown) connectionCountdown.textContent=Math.max(connectionNext,0)+'s';
+  if(connectionNext<=0){
+    connectionNext=60;
+    updateServer();
+  }
+},1000);
+updateServer();
+</script>
+</body></html>

@@ -1,0 +1,266 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Empresas • Condado Carmesim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#090a0c;color:#f2f3f5;font-family:Poppins,Arial,sans-serif}
+body{padding-top:62px;position:relative;min-height:100vh;isolation:isolate;background:transparent}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background:linear-gradient(90deg,rgba(5,6,8,.88),rgba(5,6,8,.68) 52%,rgba(5,6,8,.52)),url("../assets/images/background.webp") center/cover no-repeat;background-attachment:fixed;pointer-events:none}
+body::after{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(5,6,8,.12),rgba(5,6,8,.38) 55%,rgba(5,6,8,.70));pointer-events:none}
+a{text-decoration:none;color:inherit}
+.top-panel{position:fixed;top:0;left:0;right:0;width:100%;height:62px;z-index:9999;display:flex;align-items:center;background:#101114;border-bottom:1px solid rgba(255,255,255,.09);box-shadow:0 5px 25px rgba(0,0,0,.4)}
+.top-brand{width:205px;height:62px;flex:0 0 205px;display:flex;align-items:center;gap:10px;padding:8px 14px;border-right:1px solid rgba(255,255,255,.07)}
+.top-brand-logo{width:42px;height:50px;display:flex;align-items:center;justify-content:center}
+.top-brand-logo img{width:46px;height:46px;object-fit:contain}
+.top-brand strong{display:block;font:700 16px Cinzel,Georgia,serif;letter-spacing:1.3px}
+.top-brand span{display:block;font-size:8px;color:#737780;letter-spacing:1px}
+.top-nav{height:100%;display:flex;align-items:center;gap:2px;padding:0 8px;flex:1;overflow-x:auto;scrollbar-width:none}
+.top-nav::-webkit-scrollbar{display:none}
+.nav-item{height:38px;padding:0 11px;display:flex;align-items:center;gap:8px;border-radius:8px;color:#a4a8b0;font-size:11px;white-space:nowrap}
+.nav-item:hover,.nav-item.active{background:#292c32;color:#fff}
+.nav-icon{color:#d4af37;font-size:13px}
+.top-actions{padding:0 14px;flex:0 0 auto}
+.top-account{height:38px;padding:0 13px;display:flex;align-items:center;border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#a4a8b0;font-size:11px;white-space:nowrap}
+.top-account:hover{background:#202329;color:#fff}
+.mobile-menu{display:none;border:0;background:none;color:#fff;font-size:22px;cursor:pointer}
+.main-content{width:100%;min-height:calc(100vh - 62px)}
+.breadcrumb-bar{height:40px;padding:0 28px;display:flex;align-items:center;background:#111214;border-bottom:1px solid rgba(255,255,255,.06);font-size:10px;color:#737780}
+.breadcrumb-bar b{margin:0 9px;color:#555962}.breadcrumb-bar strong{color:#f2f3f5}
+.hero{display:none;min-height:410px;position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.07);background:transparent}
+.hero-background{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,9,11,.10),rgba(8,9,11,.22));pointer-events:none}
+.hero-content{position:relative;z-index:2;padding:20px 7% 44px}
+.hero-logo-space{height:135px;display:flex;justify-content:center;align-items:flex-start}
+.hero-logo-space img{width:min(360px,52vw);height:130px;object-fit:contain;object-position:center top;filter:drop-shadow(0 10px 20px rgba(0,0,0,.6))}
+.hero-copy{max-width:780px}.eyebrow,.section-kicker{color:#d4af37;font-size:10px;font-weight:600;letter-spacing:2px}
+.hero h1{margin:10px 0 0;font:700 clamp(36px,4vw,55px)/1.05 Cinzel,Georgia,serif}.hero h1 span{color:#ddd4bb}
+.hero p{max-width:590px;margin:16px 0 0;color:#a4a8b0;line-height:1.8;font-size:13px}
+.hero-actions{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
+.btn{min-height:42px;padding:0 17px;border-radius:7px;display:inline-flex;align-items:center;font-size:12px;font-weight:600}
+.btn-primary{background:#8f2525}.btn-secondary{border:1px solid #ffffff1f;background:#ffffff0a}
+.content-section{padding:52px 7%}.section-heading{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:24px}
+.section-heading h2{font:700 25px Cinzel,Georgia,serif;margin:7px 0 0}.section-heading p{max-width:430px;color:#a4a8b0;font-size:12px}
+.feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.feature-card{min-height:118px;padding:22px;display:flex;align-items:center;gap:17px;border:1px solid #ffffff0d;border-radius:12px;background:#181a1e}
+.feature-card>strong{width:43px;height:43px;display:grid;place-items:center;border-radius:9px;color:#d4af37;background:#d4af3712}
+.feature-card h3{font-size:14px;margin:0 0 5px}.feature-card p{color:#a4a8b0;font-size:11px;margin:0}.feature-card em{margin-left:auto;color:#737780;font-style:normal}
+.footer{padding:22px 7%;display:flex;justify-content:space-between;border-top:1px solid #ffffff0d;color:#737780;font-size:10px}
+.status-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;visibility:hidden;transition:.2s;z-index:10000}
+.status-overlay.open{opacity:1;visibility:visible}
+.status-drawer{position:fixed;top:78px;right:0;width:min(390px,92vw);height:calc(100vh - 78px);background:#15171b;border-left:1px solid rgba(255,255,255,.09);box-shadow:-18px 0 55px rgba(0,0,0,.45);transform:translateX(105%);transition:transform .25s ease;z-index:10001;overflow:auto}
+.status-drawer.open{transform:translateX(0)}
+.status-head{padding:22px;background:linear-gradient(135deg,#6f1e1e,#181a1e 70%);border-bottom:1px solid rgba(255,255,255,.08);position:relative}
+.status-head h2{margin:6px 0 0;font:700 24px Cinzel,Georgia,serif}.status-head p{margin:7px 0 0;color:#b5b8be;font-size:11px;line-height:1.6}
+.status-close{position:absolute;right:14px;top:14px;width:34px;height:34px;border:1px solid #ffffff20;border-radius:8px;background:#0003;color:#fff;cursor:pointer;font-size:18px}
+.status-list{padding:18px}.status-server{padding:18px;margin-bottom:12px;border:1px solid #ffffff10;border-radius:12px;background:#1b1d21}
+.status-server-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}.status-server-title strong{font:700 16px Cinzel,Georgia,serif}
+.status-badge{padding:5px 9px;border-radius:999px;font-size:9px;font-weight:700;text-transform:uppercase}
+.status-badge.online{color:#65d488;background:#3ba55d1f;border:1px solid #3ba55d55}.status-badge.offline{color:#ff7373;background:#8f25251f;border:1px solid #8f252555}
+.status-row{min-height:40px;padding:0 11px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #ffffff0d;color:#a4a8b0;font-size:11px}
+.status-value{display:flex;align-items:center;gap:7px;font-weight:600}.status-value i{width:8px;height:8px;border-radius:50%;display:block}
+.status-value.online{color:#54c878}.status-value.online i{background:#3ba55d}.status-value.offline{color:#f05b5b}.status-value.offline i{background:#c93636}
+@media(max-width:850px){body{padding-top:58px}.top-panel{height:58px}.top-brand{height:58px;width:auto;flex:1;border-right:0}.top-nav{display:none;position:absolute;top:58px;left:0;right:0;height:auto;background:#101114;border-bottom:1px solid #ffffff14;padding:10px;flex-direction:column;align-items:stretch}.top-nav.open{display:flex}.nav-item{width:100%}.mobile-menu{display:block}.top-actions{padding:0 10px}.hero-content,.content-section{padding-left:5%;padding-right:5%}.status-drawer{top:68px;height:calc(100vh - 68px)}}
+@media(max-width:650px){.hero{min-height:560px}.hero-logo-space{height:170px}.hero-logo-space img{width:min(390px,90vw);height:160px}.hero h1{font-size:36px}.section-heading{display:block}.feature-grid{grid-template-columns:1fr}.breadcrumb-bar{padding:0 18px}}
+
+
+.site-footer{border-top:1px solid rgba(255,255,255,.07);padding:16px 7%;background:#0d0f11}
+.developer-credit{display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;color:#737780;font-size:10px;text-align:center}
+.developer-credit strong{color:#d4af37;font-weight:600}
+.developer-credit span{color:#555b65}
+
+.developer-discord{color:inherit;text-decoration:none;display:inline-flex;align-items:center}
+.developer-discord strong{color:#d4af37;font-weight:600;transition:.2s}
+.developer-discord:hover strong{color:#fff;text-decoration:underline}
+
+.status-live-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:18px;border-bottom:1px solid rgba(255,255,255,.07)}
+.status-live-card{min-height:76px;padding:13px;display:flex;align-items:center;gap:11px;border:1px solid rgba(255,255,255,.08);border-radius:10px;background:#1b1d21}
+.status-live-icon{width:30px;height:30px;display:grid;place-items:center;border-radius:8px;background:#d4af3712;color:#d4af37;font-size:14px}
+.status-live-card span{display:block;color:#777d87;font-size:9px;text-transform:uppercase;letter-spacing:.7px}
+.status-live-card strong{display:block;margin-top:4px;color:#d4d7dc;font-size:11px}
+.status-live-card.online{border-color:#3ba55d55}.status-live-card.online .status-live-icon{background:#3ba55d1c;color:#55d47b}.status-live-card.online strong{color:#55d47b}
+.status-live-card.offline{border-color:#d94a4a55}.status-live-card.offline .status-live-icon{background:#d94a4a1c;color:#f06b6b}.status-live-card.offline strong{color:#f06b6b}
+.status-live-card.checking{border-color:#d4af3733}
+.status-refresh{margin:0 18px 18px;padding:13px;border-top:1px solid rgba(255,255,255,.07);color:#777d87;font-size:9px}
+.status-refresh span{margin-right:7px}.status-refresh strong{color:#d4af37}.status-refresh small{display:block;margin-top:6px;font-size:9px}
+@media(max-width:650px){.status-live-grid{grid-template-columns:1fr}}
+</style><link rel="icon" type="image/x-icon" href="../favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon.png">
+</head><body><header class="top-panel">
+<a class="top-brand" href="../index.html"><div class="top-brand-logo"><img src="../assets/images/logo.webp" alt="Logo Carmesim"></div><div><strong>CARMESIM</strong><span>CONDADO • REDM</span></div></a>
+<button class="mobile-menu" id="mobileMenu" aria-label="Menu">☰</button>
+<nav class="top-nav" id="topNav"><a class="nav-item" href="../index.html"><span class="nav-icon">⌂</span>Home</a><a class="nav-item" href="conexao.html"><span class="nav-icon">⌁</span>Conexão</a><a class="nav-item active" href="empresas.html"><span class="nav-icon">▣</span>Empresas</a><a class="nav-item" href="precificacao.html"><span class="nav-icon">$</span>Precificação</a><a class="nav-item" href="media.html"><span class="nav-icon">▧</span>Media</a><a class="nav-item" href="sobre.html"><span class="nav-icon">ⓘ</span>Sobre</a><a class="nav-item" href="regras.html"><span class="nav-icon">§</span>Regras</a><a class="nav-item" href="comandos.html"><span class="nav-icon">↗</span>Comandos</a><a class="nav-item" href="/streamer/index.php"><span class="nav-icon">✦</span>Creators</a><a class="nav-item" href="#" data-status-open><span class="nav-icon">◉</span>Status</a></nav>
+<div class="top-actions"><a class="top-account" href="conta.html">Conta →</a></div>
+</header>
+<main class="main-content"><div class="breadcrumb-bar"><span>Condado Carmesim</span><b>/</b><strong>Empresas</strong></div>
+<section class="hero"><div class="hero-background"></div><div class="hero-content"><div class="hero-logo-space"><img src="../assets/images/logo.webp" alt="Condado Carmesim"></div><div class="hero-copy"><span class="eyebrow">CONDADO CARMESIM</span><h1>Empresas</h1><p>Confira as empresas disponíveis no Condado Carmesim e veja seus proprietários.</p></div></div></section>
+<section class="companies-public">
+<style>
+.companies-public{padding:58px 7% 70px;position:relative;background:transparent}.companies-public-inner{max-width:1180px;margin:auto}.companies-public-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:22px}.companies-public-head h2{margin:6px 0 0;font:700 28px Cinzel,Georgia,serif}.companies-public-head p{margin:6px 0 0;color:#8e96a3;font-size:11px;max-width:520px}.companies-count{font-size:10px;color:#d4af37;border:1px solid #5c4b1a;border-radius:999px;padding:7px 10px;white-space:nowrap}.companies-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.company-card{overflow:hidden;border:1px solid rgba(255,255,255,.09);border-radius:13px;background:#15171b;box-shadow:0 12px 35px rgba(0,0,0,.2)}.company-photo{height:190px;background:#0e1013;overflow:hidden;position:relative}.company-photo img{width:100%;height:100%;object-fit:cover;display:block}.company-no-photo{height:100%;display:grid;place-items:center;color:#4f5661;font-size:38px}.company-status{position:absolute;top:11px;right:11px;padding:6px 9px;border-radius:999px;font-size:9px;font-weight:800;text-transform:uppercase;background:#42191d;border:1px solid #8c3039;color:#ff717a}.company-status.available{background:#18351f;border-color:#2d7740;color:#69dc86}.company-body{padding:17px}.company-category{color:#d4af37;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}.company-body h3{margin:6px 0 7px;font:700 19px Cinzel,Georgia,serif}.company-body p{margin:0;color:#9aa1ad;font-size:11px;line-height:1.7}.companies-empty{padding:30px;border:1px dashed #333b49;border-radius:12px;color:#77808f;text-align:center}.companies-loading{color:#77808f;font-size:11px;padding:20px 0}.company-link{display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:8px 11px;border:1px solid #6b5718;border-radius:8px;background:rgba(32,27,10,.72);color:#d4af37;text-decoration:none;font-size:10px;font-weight:700;transition:.2s}.company-link:hover{background:#d4af3714;border-color:#d4af37;color:#fff}.company-link::after{content:'↗';font-size:11px}.company-body p + .company-link{margin-top:12px}
+@media(max-width:900px){.companies-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.companies-public{padding:36px 5%}.companies-public-head{display:block}.companies-count{display:inline-block;margin-top:12px}.companies-grid{grid-template-columns:1fr}}
+
+.companies-filters{display:grid;grid-template-columns:minmax(260px,1fr) minmax(220px,280px) auto;gap:10px;margin:0 0 22px}.company-search-wrap,.company-category-wrap{position:relative}.company-search-wrap input,.company-category-wrap select{width:100%;height:44px;padding:0 14px;border:1px solid rgba(255,255,255,.11);border-radius:9px;background:rgba(12,14,17,.82);color:#e8e9eb;font:500 11px Poppins,Arial,sans-serif;outline:none}.company-search-wrap input{padding-left:38px}.company-search-wrap input::placeholder{color:#68707c}.company-search-wrap input:focus,.company-category-wrap select:focus{border-color:#8c7021;box-shadow:0 0 0 3px rgba(212,175,55,.08)}.company-search-icon{position:absolute;left:14px;top:50%;transform:translateY(-52%);color:#d4af37;font-size:18px;z-index:1}.company-category-wrap select{cursor:pointer;appearance:auto}.company-category-wrap select option{background:#15171b;color:#fff}.company-clear{height:44px;padding:0 15px;border:1px solid #5c4b1a;border-radius:9px;background:rgba(18,19,22,.78);color:#d4af37;font:600 10px Poppins,Arial,sans-serif;cursor:pointer;white-space:nowrap}.company-clear:hover{background:#d4af3712;color:#fff}.companies-no-filter-results{grid-column:1/-1}.company-result-note{margin-top:9px;color:#68707c;font-size:10px}@media(max-width:900px){.companies-filters{grid-template-columns:1fr 1fr}.company-clear{grid-column:1/-1;width:max-content}}@media(max-width:600px){.companies-filters{grid-template-columns:1fr}.company-clear{grid-column:auto;width:100%}}
+</style>
+<div class="companies-public-inner">
+  <div class="companies-public-head">
+    <div>
+      <span class="section-kicker">NEGÓCIOS DO CONDADO</span>
+      <h2>Empresas</h2>
+      <p>Conheça as empresas cadastradas pela administração e veja quais estão disponíveis para os jogadores.</p>
+    </div>
+    <span class="companies-count" id="companiesCount">Carregando...</span>
+  </div>
+
+  <div class="companies-filters" aria-label="Filtros de empresas">
+    <div class="company-search-wrap">
+      <span class="company-search-icon">⌕</span>
+      <input id="companySearch" type="search" placeholder="Pesquisar por nome da empresa..." autocomplete="off">
+    </div>
+    <div class="company-category-wrap">
+      <select id="companyCategory" aria-label="Filtrar por categoria">
+        <option value="">Todas as categorias</option>
+      </select>
+    </div>
+    <button type="button" class="company-clear" id="companyClear">Limpar filtros</button>
+  </div>
+
+  <div id="companiesGrid" class="companies-grid"><div class="companies-loading">Carregando empresas...</div></div>
+  <div id="companiesNoResults" class="companies-empty" style="display:none">Nenhuma empresa encontrada com os filtros selecionados.</div>
+</div>
+</section>
+<footer class="footer"><span>© 2026 Group Carmesim</span><span>RedM Roleplay</span>
+<span><a class="terms-link" href="termos.html">Termos de Serviço e Privacidade</a></span>
+<div class="developer-credit">
+  Desenvolvido por <a class="developer-discord" href="https://discord.com/users/207712204890439680" target="_blank" rel="noopener noreferrer"><strong>luciferms666</strong></a>
+  
+</div>
+</footer></main><div class="status-overlay" id="statusOverlay"></div>
+<aside class="status-drawer" id="statusDrawer">
+<div class="status-head">
+  <button class="status-close" id="statusClose" type="button">×</button>
+  <span class="section-kicker">CONDADO CARMESIM</span>
+  <h2>Status dos Servidores</h2>
+  <p>Verificação em tempo real do servidor RedM e da conexão CFX.</p>
+</div>
+
+<div class="status-live-grid">
+  <div class="status-live-card" id="redmStatusCard">
+    <div class="status-live-icon">●</div>
+    <div><span>Servidor RedM</span><strong id="redmStatusText">Verificando...</strong></div>
+  </div>
+  <div class="status-live-card" id="cfxStatusCard">
+    <div class="status-live-icon">↗</div>
+    <div><span>Conexão CFX</span><strong id="cfxStatusText">Verificando...</strong></div>
+  </div>
+</div>
+
+<div class="status-list">
+  <div class="status-server">
+    <div class="status-server-title">
+      <strong>Condado Carmesim</strong>
+      <span class="status-badge" id="classicBadge">Verificando</span>
+    </div>
+    <div class="status-row"><span>Servidor</span><span class="status-value" id="classicServerValue"><i></i>Verificando...</span></div>
+    <div class="status-row"><span>Jogadores</span><span class="status-value" id="classicPlayersValue"><i></i>-- online</span></div>
+  </div>
+</div>
+
+<div class="status-refresh">
+  <span>Atualização automática</span>
+  <strong>60 segundos</strong>
+  <small>Última verificação: <b id="statusLastUpdate">--:--:--</b></small>
+</div>
+</aside><script>
+
+const menu=document.getElementById("mobileMenu");
+const nav=document.getElementById("topNav");
+if(menu&&nav)menu.addEventListener("click",()=>nav.classList.toggle("open"));
+
+const overlay=document.getElementById("statusOverlay");
+const drawer=document.getElementById("statusDrawer");
+const close=document.querySelector("[data-status-close]");
+function openStatus(){if(drawer&&overlay){drawer.classList.add("open");overlay.classList.add("open");document.body.style.overflow="hidden";}}
+function closeStatus(){if(drawer&&overlay){drawer.classList.remove("open");overlay.classList.remove("open");document.body.style.overflow="";}}
+document.querySelectorAll("[data-status-open]").forEach(el=>el.addEventListener("click",e=>{e.preventDefault();openStatus();}));
+if(close)close.addEventListener("click",closeStatus);
+if(overlay)overlay.addEventListener("click",closeStatus);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeStatus();});
+
+</script><script>
+(async function(){
+  const grid=document.getElementById('companiesGrid');
+  const count=document.getElementById('companiesCount');
+  const search=document.getElementById('companySearch');
+  const category=document.getElementById('companyCategory');
+  const clear=document.getElementById('companyClear');
+  const noResults=document.getElementById('companiesNoResults');
+  if(!grid)return;
+
+  let allCompanies=[];
+
+  try{
+    const r=await fetch('../api/empresas_public.php?ts='+Date.now(),{cache:'no-store'});
+    const data=await r.json();
+    if(!data.ok)throw new Error('api');
+    allCompanies=(data.companies||[]).map(c=>({...c,available:Number(c.available)===1}));
+
+    /* Disponíveis primeiro; indisponíveis sempre por último. */
+    allCompanies.sort((a,b)=>{
+      const availableDiff=Number(b.available)-Number(a.available);
+      if(availableDiff!==0)return availableDiff;
+      const positionDiff=Number(a.position??0)-Number(b.position??0);
+      if(positionDiff!==0)return positionDiff;
+      return String(a.name??'').localeCompare(String(b.name??''),'pt-BR',{sensitivity:'base'});
+    });
+
+    const categories=[...new Set(allCompanies.map(c=>String(c.category||'').trim()).filter(Boolean))]
+      .sort((a,b)=>a.localeCompare(b,'pt-BR',{sensitivity:'base'}));
+    categories.forEach(cat=>{
+      const option=document.createElement('option');
+      option.value=cat.toLocaleLowerCase('pt-BR');
+      option.textContent=cat;
+      category.appendChild(option);
+    });
+
+    render();
+  }catch(e){
+    count.textContent='';
+    grid.innerHTML='<div class="companies-empty companies-no-filter-results">Não foi possível carregar as empresas.</div>';
+    if(noResults)noResults.style.display='none';
+  }
+
+  function render(){
+    const term=String(search?.value||'').trim().toLocaleLowerCase('pt-BR');
+    const selectedCategory=String(category?.value||'').trim();
+
+    const filtered=allCompanies.filter(c=>{
+      const name=String(c.name||'').toLocaleLowerCase('pt-BR');
+      const cat=String(c.category||'').toLocaleLowerCase('pt-BR');
+      const matchesName=!term || name.includes(term);
+      const matchesCategory=!selectedCategory || cat===selectedCategory;
+      return matchesName && matchesCategory;
+    });
+
+    count.textContent=filtered.length+' '+(filtered.length===1?'empresa':'empresas');
+    noResults.style.display=filtered.length?'none':'block';
+    grid.innerHTML=filtered.map(c=>{
+      const photo=c.photo?`<img src="${escapeHtml(c.photo)}" alt="${escapeHtml(c.name)}" loading="lazy">`:'<div class="company-no-photo">▣</div>';
+      const status=c.available?'<span class="company-status available">Empresa Disponível</span>':'<span class="company-status">Não Disponível</span>';
+      const link=(c.link_url&&/^https?:\/\//i.test(String(c.link_url)))?`<a class="company-link" href="${escapeHtml(c.link_url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(c.link_text||'Acessar link')}</a>`:'';
+      return `<article class="company-card"><div class="company-photo">${photo}${status}</div><div class="company-body"><span class="company-category">${escapeHtml(c.category||'Empresa')}</span><h3>${escapeHtml(c.name||'Sem nome')}</h3><p>${escapeHtml(c.description||'Sem descrição cadastrada.')}</p>${link}</div></article>`;
+    }).join('');
+  }
+
+  search?.addEventListener('input',render);
+  category?.addEventListener('change',render);
+  clear?.addEventListener('click',()=>{
+    search.value='';
+    category.value='';
+    render();
+  });
+
+  function escapeHtml(v){return String(v??'').replace(/[&<>'"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[m]));}
+})();
+</script>
+</body></html>

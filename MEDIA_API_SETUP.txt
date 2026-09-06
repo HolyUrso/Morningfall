@@ -1,0 +1,12 @@
+CARMESIM ROLEPLAY — MEDIA AUTOMÁTICA YOUTUBE + TWITCH
+
+1. Abra api/config.php.
+2. Preencha youtube_api_key, twitch_client_id e twitch_client_secret.
+3. Envie api/ e cache/ para a hospedagem.
+4. A página Media chama api/media.php.
+5. O PHP mantém cache por 5 minutos e prioriza lives, depois conteúdos recentes.
+6. O sistema remove criadores repetidos e retorna no máximo 8.
+7. Enquanto as chaves não forem preenchidas, o primeiro card usa o exemplo luazinha_ofc.
+
+A InfinityFree gratuita não oferece cron/background tasks; por isso a atualização ocorre
+quando a página Media é acessada e o cache já venceu. Não é necessário cron.

@@ -1,0 +1,324 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Media • Condado Carmesim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#0b0c0e;color:#f2f3f5;font-family:Poppins,Arial,sans-serif}
+body.media-page-body{position:relative;isolation:isolate;min-height:100vh;background:#08090b !important}
+body.media-page-body::before{content:"";position:fixed;inset:0;z-index:-2;background-image:linear-gradient(90deg,rgba(5,6,8,.88),rgba(5,6,8,.68) 50%,rgba(5,6,8,.72)),url("../assets/images/background.webp");background-size:cover;background-position:center;background-repeat:no-repeat}
+body.media-page-body::after{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(5,6,8,.20),rgba(5,6,8,.42) 55%,rgba(5,6,8,.78));pointer-events:none}
+body.media-page-body .media-page{position:relative;z-index:1}
+body.media-page-body .top-panel{background:rgba(16,17,20,.88);backdrop-filter:blur(8px)}
+body.media-page-body .media-card,body.media-page-body .media-note{background:rgba(18,20,24,.82);backdrop-filter:blur(6px)}
+body{padding-top:78px}
+a{text-decoration:none;color:inherit}
+.top-panel{position:fixed;top:0;left:0;right:0;width:100%;height:78px;z-index:9999;display:flex;align-items:center;background:#101114;border-bottom:1px solid rgba(255,255,255,.09);box-shadow:0 5px 25px rgba(0,0,0,.4)}
+.top-brand{width:220px;height:78px;flex:0 0 220px;display:flex;align-items:center;gap:10px;padding:8px 14px;border-right:1px solid rgba(255,255,255,.07)}
+.top-brand-logo{width:46px;height:58px;display:flex;align-items:center;justify-content:center}
+.top-brand-logo img{width:54px;height:54px;object-fit:contain}
+.top-brand strong{display:block;font:700 17px Cinzel,Georgia,serif;letter-spacing:1.3px}
+.top-brand span{display:block;font-size:8px;color:#737780;letter-spacing:1px}
+.top-nav{height:100%;display:flex;align-items:center;gap:3px;padding:0 10px;flex:1;overflow-x:auto;scrollbar-width:none}
+.top-nav::-webkit-scrollbar{display:none}
+.nav-item{height:42px;padding:0 13px;display:flex;align-items:center;gap:8px;border-radius:8px;color:#a4a8b0;font-size:12px;white-space:nowrap}
+.nav-item:hover,.nav-item.active{background:#292c32;color:#fff}
+.nav-icon{color:#d4af37;font-size:13px}
+.top-actions{padding:0 14px;flex:0 0 auto}
+.top-account{height:38px;padding:0 13px;display:flex;align-items:center;border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#a4a8b0;font-size:11px;white-space:nowrap}
+.top-account:hover{background:#202329;color:#fff}
+.mobile-menu{display:none;border:0;background:none;color:#fff;font-size:22px;cursor:pointer}
+.main-content{width:100%;min-height:calc(100vh - 78px)}
+.breadcrumb-bar{height:48px;padding:0 34px;display:flex;align-items:center;background:#111214;border-bottom:1px solid rgba(255,255,255,.06);font-size:11px;color:#737780}
+.breadcrumb-bar b{margin:0 9px;color:#555962}.breadcrumb-bar strong{color:#f2f3f5}
+.hero{min-height:580px;position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.07);background:#111214}
+.hero-background{position:absolute;inset:0;background-image:linear-gradient(90deg,rgba(8,9,11,.98),rgba(8,9,11,.80) 52%,rgba(8,9,11,.45)),url("../assets/images/background.webp");background-size:cover;background-position:center;background-repeat:no-repeat}
+.hero-content{position:relative;z-index:2;padding:28px 7% 65px}
+.hero-logo-space{height:195px;display:flex;justify-content:center;align-items:flex-start}
+.hero-logo-space img{width:min(450px,60vw);height:185px;object-fit:contain;object-position:center top;filter:drop-shadow(0 10px 20px rgba(0,0,0,.6))}
+.hero-copy{max-width:780px}.eyebrow,.section-kicker{color:#d4af37;font-size:10px;font-weight:600;letter-spacing:2px}
+.hero h1{margin:10px 0 0;font:700 clamp(36px,4vw,55px)/1.05 Cinzel,Georgia,serif}.hero h1 span{color:#ddd4bb}
+.hero p{max-width:590px;margin:16px 0 0;color:#a4a8b0;line-height:1.8;font-size:13px}
+.hero-actions{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
+.btn{min-height:42px;padding:0 17px;border-radius:7px;display:inline-flex;align-items:center;font-size:12px;font-weight:600}
+.btn-primary{background:#8f2525}.btn-secondary{border:1px solid #ffffff1f;background:#ffffff0a}
+.content-section{padding:52px 7%}.section-heading{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:24px}
+.section-heading h2{font:700 25px Cinzel,Georgia,serif;margin:7px 0 0}.section-heading p{max-width:430px;color:#a4a8b0;font-size:12px}
+.feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.feature-card{min-height:118px;padding:22px;display:flex;align-items:center;gap:17px;border:1px solid #ffffff0d;border-radius:12px;background:#181a1e}
+.feature-card>strong{width:43px;height:43px;display:grid;place-items:center;border-radius:9px;color:#d4af37;background:#d4af3712}
+.feature-card h3{font-size:14px;margin:0 0 5px}.feature-card p{color:#a4a8b0;font-size:11px;margin:0}.feature-card em{margin-left:auto;color:#737780;font-style:normal}
+.footer{padding:22px 7%;display:flex;justify-content:space-between;border-top:1px solid #ffffff0d;color:#737780;font-size:10px}
+.status-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;visibility:hidden;transition:.2s;z-index:10000}
+.status-overlay.open{opacity:1;visibility:visible}
+.status-drawer{position:fixed;top:78px;right:0;width:min(390px,92vw);height:calc(100vh - 78px);background:#15171b;border-left:1px solid rgba(255,255,255,.09);box-shadow:-18px 0 55px rgba(0,0,0,.45);transform:translateX(105%);transition:transform .25s ease;z-index:10001;overflow:auto}
+.status-drawer.open{transform:translateX(0)}
+.status-head{padding:22px;background:linear-gradient(135deg,#6f1e1e,#181a1e 70%);border-bottom:1px solid rgba(255,255,255,.08);position:relative}
+.status-head h2{margin:6px 0 0;font:700 24px Cinzel,Georgia,serif}.status-head p{margin:7px 0 0;color:#b5b8be;font-size:11px;line-height:1.6}
+.status-close{position:absolute;right:14px;top:14px;width:34px;height:34px;border:1px solid #ffffff20;border-radius:8px;background:#0003;color:#fff;cursor:pointer;font-size:18px}
+.status-list{padding:18px}.status-server{padding:18px;margin-bottom:12px;border:1px solid #ffffff10;border-radius:12px;background:#1b1d21}
+.status-server-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}.status-server-title strong{font:700 16px Cinzel,Georgia,serif}
+.status-badge{padding:5px 9px;border-radius:999px;font-size:9px;font-weight:700;text-transform:uppercase}
+.status-badge.online{color:#65d488;background:#3ba55d1f;border:1px solid #3ba55d55}.status-badge.offline{color:#ff7373;background:#8f25251f;border:1px solid #8f252555}
+.status-row{min-height:40px;padding:0 11px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #ffffff0d;color:#a4a8b0;font-size:11px}
+.status-value{display:flex;align-items:center;gap:7px;font-weight:600}.status-value i{width:8px;height:8px;border-radius:50%;display:block}
+.status-value.online{color:#54c878}.status-value.online i{background:#3ba55d}.status-value.offline{color:#f05b5b}.status-value.offline i{background:#c93636}
+@media(max-width:850px){body{padding-top:68px}.top-panel{height:68px}.top-brand{height:68px;width:auto;flex:1;border-right:0}.top-nav{display:none;position:absolute;top:68px;left:0;right:0;height:auto;background:#101114;border-bottom:1px solid #ffffff14;padding:10px;flex-direction:column;align-items:stretch}.top-nav.open{display:flex}.nav-item{width:100%}.mobile-menu{display:block}.top-actions{padding:0 10px}.hero-content,.content-section{padding-left:5%;padding-right:5%}.status-drawer{top:68px;height:calc(100vh - 68px)}}
+@media(max-width:650px){.hero{min-height:560px}.hero-logo-space{height:170px}.hero-logo-space img{width:min(390px,90vw);height:160px}.hero h1{font-size:36px}.section-heading{display:block}.feature-grid{grid-template-columns:1fr}.breadcrumb-bar{padding:0 18px}}
+
+
+.site-footer{border-top:1px solid rgba(255,255,255,.07);padding:16px 7%;background:#0d0f11}
+.developer-credit{display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;color:#737780;font-size:10px;text-align:center}
+.developer-credit strong{color:#d4af37;font-weight:600}
+.developer-credit span{color:#555b65}
+
+.developer-discord{color:inherit;text-decoration:none;display:inline-flex;align-items:center}
+.developer-discord strong{color:#d4af37;font-weight:600;transition:.2s}
+.developer-discord:hover strong{color:#fff;text-decoration:underline}
+
+.status-live-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:18px;border-bottom:1px solid rgba(255,255,255,.07)}
+.status-live-card{min-height:76px;padding:13px;display:flex;align-items:center;gap:11px;border:1px solid rgba(255,255,255,.08);border-radius:10px;background:#1b1d21}
+.status-live-icon{width:30px;height:30px;display:grid;place-items:center;border-radius:8px;background:#d4af3712;color:#d4af37;font-size:14px}
+.status-live-card span{display:block;color:#777d87;font-size:9px;text-transform:uppercase;letter-spacing:.7px}
+.status-live-card strong{display:block;margin-top:4px;color:#d4d7dc;font-size:11px}
+.status-live-card.online{border-color:#3ba55d55}.status-live-card.online .status-live-icon{background:#3ba55d1c;color:#55d47b}.status-live-card.online strong{color:#55d47b}
+.status-live-card.offline{border-color:#d94a4a55}.status-live-card.offline .status-live-icon{background:#d94a4a1c;color:#f06b6b}.status-live-card.offline strong{color:#f06b6b}
+.status-live-card.checking{border-color:#d4af3733}
+.status-refresh{margin:0 18px 18px;padding:13px;border-top:1px solid rgba(255,255,255,.07);color:#777d87;font-size:9px}
+.status-refresh span{margin-right:7px}.status-refresh strong{color:#d4af37}.status-refresh small{display:block;margin-top:6px;font-size:9px}
+@media(max-width:650px){.status-live-grid{grid-template-columns:1fr}}
+</style>
+<style>
+.creator-ranking{margin:0 0 42px;padding:24px;border:1px solid rgba(212,175,55,.16);border-radius:16px;background:rgba(12,14,18,.78);box-shadow:0 18px 50px rgba(0,0,0,.24);backdrop-filter:blur(8px)}
+.creator-ranking-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:18px}
+.creator-ranking-head h2{margin:7px 0 0;font:700 25px Cinzel,Georgia,serif;color:#f2eee5}
+.creator-ranking-head p{margin:7px 0 0;color:#9299a6;font-size:11px;line-height:1.6}
+.creator-ranking-source{font-size:9px;color:#d4af37;border:1px solid rgba(212,175,55,.22);border-radius:999px;padding:7px 10px;white-space:nowrap}
+.creator-ranking-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:12px}
+.creator-rank-card{position:relative;min-height:205px;padding:18px 14px;border:1px solid rgba(255,255,255,.08);border-radius:12px;background:rgba(24,26,30,.86);text-align:center}
+.creator-rank-card.rank-1{border-color:rgba(212,175,55,.38);transform:translateY(-3px)}
+.creator-rank-medal{font-size:25px;line-height:1;margin-bottom:9px}
+.creator-rank-avatar{width:76px;height:76px;margin:-1px auto 9px;border-radius:50%;object-fit:cover;border:1px solid rgba(212,175,55,.25);background:#101114}
+.creator-rank-avatar-fallback{width:76px;height:76px;margin:-1px auto 9px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(212,175,55,.25);background:#101114;color:#d4af37;font-weight:700}
+.creator-rank-card strong{display:block;color:#f0f1f3;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.creator-rank-card small{display:block;margin-top:5px;color:#858d9a;font-size:9px;text-transform:uppercase;letter-spacing:.8px}
+.creator-rank-points{display:block;margin-top:9px;color:#d4af37;font-weight:700;font-size:14px}
+.creator-ranking-list{display:flex;flex-direction:column;gap:7px}
+.creator-ranking-row{display:grid;grid-template-columns:42px 1fr auto auto;align-items:center;gap:12px;padding:11px 13px;border:1px solid rgba(255,255,255,.06);border-radius:9px;background:rgba(18,20,24,.72)}
+.creator-ranking-position{color:#777f8b;font-weight:700;font-size:12px;text-align:center}
+.creator-ranking-name{font-size:11px;color:#e4e6ea;font-weight:600}.creator-ranking-category{margin-left:7px;color:#777f8b;font-size:9px}
+.creator-ranking-points{color:#d4af37;font-size:11px;font-weight:700}.creator-ranking-current{color:#858d9a;font-size:10px}
+.creator-ranking-loading,.creator-ranking-empty{padding:24px;text-align:center;color:#858d9a;font-size:11px;border:1px dashed rgba(255,255,255,.08);border-radius:10px}
+@media(max-width:1100px){.creator-ranking-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.creator-rank-card{min-height:195px}}
+@media(max-width:800px){.creator-ranking-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.creator-rank-card.rank-1{transform:none}.creator-ranking-head{display:block}.creator-ranking-source{display:inline-block;margin-top:12px}.creator-ranking-row{grid-template-columns:32px 1fr auto}.creator-ranking-current{display:none}}
+@media(max-width:520px){.creator-ranking-grid{grid-template-columns:1fr}.creator-rank-card{min-height:205px}}
+</style>
+<style>
+.media-page{max-width:1180px;margin:0 auto;padding:55px 28px 75px}
+.media-hero{margin-bottom:32px}
+.media-hero h1{font:700 42px Cinzel,Georgia,serif;color:#f2eee5;margin:8px 0 12px}
+.media-hero p{max-width:760px;color:#aeb5c0;font-size:14px;line-height:1.8}
+.media-grid{display:block}.media-group{margin-bottom:34px}.media-group-title{display:flex;align-items:center;gap:9px;margin:0 0 14px;font-size:13px;font-weight:700;color:#f0f1f3}.media-group-title .platform-dot{width:8px;height:8px;border-radius:50%;display:inline-block;background:#d4af37}.media-group.twitch .platform-dot{background:#9147ff}.media-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.media-card{overflow:hidden;border:1px solid rgba(255,255,255,.08);border-radius:13px;background:rgba(18,20,24,.94);box-shadow:0 15px 40px rgba(0,0,0,.22)}
+.media-player{position:relative;aspect-ratio:16/9;background:#08090b;overflow:hidden}
+.media-player iframe{display:block;width:100%;height:100%;border:0}
+.media-placeholder{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;color:#9098a6}
+.media-platform{font-size:9px;letter-spacing:2px;color:#d4af37;margin-bottom:10px}
+.media-placeholder strong{font-size:14px;color:#e7e9ec}
+.media-placeholder small{margin-top:6px;font-size:11px;line-height:1.5}
+.media-card-info{padding:14px}
+.media-source{font-size:9px;letter-spacing:1.6px;text-transform:uppercase;color:#d4af37}
+.media-card h2{font-size:14px;color:#f0f1f3;margin:5px 0}
+.media-card p{font-size:11px;color:#9299a6;line-height:1.5;margin:0 0 12px}
+.media-open{display:inline-flex;padding:8px 10px;border-radius:7px;border:1px solid rgba(212,175,55,.25);color:#d4af37;font-size:11px;text-decoration:none}
+.media-open[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.media-note{margin-top:22px;padding:17px 20px;border:1px solid rgba(212,175,55,.13);border-radius:10px;background:rgba(18,20,24,.75);display:flex;gap:12px;align-items:center}
+.media-note strong{color:#d4af37;font-size:12px}
+.media-note span{font-size:11px;color:#9299a6;line-height:1.6}
+@media(max-width:1050px){.media-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.media-page{padding:40px 16px}.media-row{grid-template-columns:1fr}.media-note{flex-direction:column;align-items:flex-start}}
+</style>
+
+<style>
+.media-player{position:relative}
+.media-live-badge{position:absolute;top:10px;left:10px;padding:5px 8px;border-radius:6px;background:#b31d2c;color:#fff;font-size:9px;font-weight:700;letter-spacing:1px;z-index:2;box-shadow:0 5px 15px rgba(0,0,0,.35)}
+.media-card-info p strong{color:#e6e8ec}
+</style>
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon.png">
+</head><body class="immersive-page media-page-body"><header class="top-panel">
+<a class="top-brand" href="../index.html"><div class="top-brand-logo"><img src="../assets/images/logo.webp" alt="Logo Carmesim"></div><div><strong>CARMESIM</strong><span>CONDADO • REDM</span></div></a>
+<button class="mobile-menu" id="mobileMenu" aria-label="Menu">☰</button>
+<nav class="top-nav" id="topNav"><a class="nav-item" href="../index.html"><span class="nav-icon">⌂</span>Home</a><a class="nav-item" href="conexao.html"><span class="nav-icon">⌁</span>Conexão</a><a class="nav-item" href="empresas.html"><span class="nav-icon">▣</span>Empresas</a><a class="nav-item" href="precificacao.html"><span class="nav-icon">$</span>Precificação</a><a class="nav-item active" href="media.html"><span class="nav-icon">▧</span>Media</a><a class="nav-item" href="sobre.html"><span class="nav-icon">ⓘ</span>Sobre</a><a class="nav-item" href="regras.html"><span class="nav-icon">§</span>Regras</a><a class="nav-item" href="comandos.html" data-player-commands><span class="nav-icon">↗</span>Comandos</a><a class="nav-item" href="/streamer/index.php"><span class="nav-icon">✦</span>Creators</a><a class="nav-item" href="#" data-status-open><span class="nav-icon">◉</span>Status</a></nav>
+<div class="top-actions"><a class="top-account" href="conta.html">Conta →</a></div>
+</header>
+
+<main class="media-page">
+  <section class="media-hero">
+    <span class="section-kicker">COMUNIDADE CARMESIM</span>
+    <h1>Media</h1>
+    <p>Acompanhe lives, vídeos e momentos do Condado Carmesim. Dê play aqui mesmo ou abra o conteúdo diretamente na plataforma.</p>
+  </section>
+
+  <section class="creator-ranking" id="creatorRanking">
+    <div class="creator-ranking-head">
+      <div>
+        <span class="section-kicker">CARMESIM CREATORS</span>
+        <h2>🏆 Ranking Geral</h2>
+        <p>Os streamers são classificados pelos pontos positivos conquistados em todo o histórico do Carmesim Creators.</p>
+      </div>
+      <span class="creator-ranking-source">DADOS DO CARMESIM CREATORS</span>
+    </div>
+    <div id="creatorRankingContent" class="creator-ranking-loading">Carregando ranking...</div>
+  </section>
+
+  <section class="media-grid" id="mediaGrid">
+    <section class="media-group youtube">
+      <h2 class="media-group-title"><span class="platform-dot"></span>YouTube <span style="font-weight:400;color:#7f8793">· Conteúdos recentes do Condado Carmesim</span></h2>
+      <div class="media-row" id="youtubeRow"></div>
+    </section>
+    <section class="media-group twitch">
+      <h2 class="media-group-title"><span class="platform-dot"></span>Twitch <span style="font-weight:400;color:#7f8793">· Lives do Condado Carmesim</span></h2>
+      <div class="media-row" id="twitchRow"></div>
+    </section>
+  </section>
+
+  <section class="media-note">
+    <strong>Como funciona</strong>
+    <span>Os destaques são organizados para evitar repetir o mesmo criador no mesmo dia. O player aparece no card; para assistir na plataforma original, basta clicar em <b>Abrir na plataforma</b>.</span>
+  </section>
+</main>
+<div class="status-overlay" id="statusOverlay"></div>
+<aside class="status-drawer" id="statusDrawer">
+<div class="status-head">
+  <button class="status-close" id="statusClose" type="button">×</button>
+  <span class="section-kicker">CONDADO CARMESIM</span>
+  <h2>Status dos Servidores</h2>
+  <p>Verificação em tempo real do servidor RedM e da conexão CFX.</p>
+</div>
+
+<div class="status-live-grid">
+  <div class="status-live-card" id="redmStatusCard">
+    <div class="status-live-icon">●</div>
+    <div><span>Servidor RedM</span><strong id="redmStatusText">Verificando...</strong></div>
+  </div>
+  <div class="status-live-card" id="cfxStatusCard">
+    <div class="status-live-icon">↗</div>
+    <div><span>Conexão CFX</span><strong id="cfxStatusText">Verificando...</strong></div>
+  </div>
+</div>
+
+<div class="status-list">
+  <div class="status-server">
+    <div class="status-server-title">
+      <strong>Condado Carmesim</strong>
+      <span class="status-badge" id="classicBadge">Verificando</span>
+    </div>
+    <div class="status-row"><span>Servidor</span><span class="status-value" id="classicServerValue"><i></i>Verificando...</span></div>
+    <div class="status-row"><span>Jogadores</span><span class="status-value" id="classicPlayersValue"><i></i>-- online</span></div>
+  </div>
+</div>
+
+<div class="status-refresh">
+  <span>Atualização automática</span>
+  <strong>60 segundos</strong>
+  <small>Última verificação: <b id="statusLastUpdate">--:--:--</b></small>
+</div>
+</aside><script>
+
+const menu=document.getElementById("mobileMenu");
+const nav=document.getElementById("topNav");
+if(menu&&nav)menu.addEventListener("click",()=>nav.classList.toggle("open"));
+
+const overlay=document.getElementById("statusOverlay");
+const drawer=document.getElementById("statusDrawer");
+const close=document.querySelector("[data-status-close]");
+function openStatus(){if(drawer&&overlay){drawer.classList.add("open");overlay.classList.add("open");document.body.style.overflow="hidden";}}
+function closeStatus(){if(drawer&&overlay){drawer.classList.remove("open");overlay.classList.remove("open");document.body.style.overflow="";}}
+document.querySelectorAll("[data-status-open]").forEach(el=>el.addEventListener("click",e=>{e.preventDefault();openStatus();}));
+if(close)close.addEventListener("click",closeStatus);
+if(overlay)overlay.addEventListener("click",closeStatus);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeStatus();});
+
+</script><script src="../assets/js/media.js"></script>
+<script>
+(async function(){
+ const box=document.getElementById('creatorRankingContent');
+ if(!box)return;
+ const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+ const medal=r=>r===1?'🥇':r===2?'🥈':r===3?'🥉':'#'+r;
+ const points=v=>Number(v||0).toLocaleString('pt-BR');
+ function avatar(item){
+   if(item.discord_avatar){return `<img class="creator-rank-avatar" src="${esc(item.discord_avatar)}" alt="Avatar de ${esc(item.name)}" loading="lazy">`;}
+   return `<div class="creator-rank-avatar-fallback">${esc((item.name||'?').trim().charAt(0).toUpperCase())}</div>`;
+ }
+ try{
+   const r=await fetch('../api/creators-ranking.php?ts='+Date.now(),{cache:'no-store'});
+   const d=await r.json();
+   const rows=Array.isArray(d.ranking)?d.ranking:[];
+   if(!rows.length){box.innerHTML='<div class="creator-ranking-empty">Nenhum streamer disponível no ranking.</div>';return;}
+   const top=rows.slice(0,5);
+   let html='<div class="creator-ranking-grid">';
+   top.forEach(item=>{
+     html+=`<article class="creator-rank-card rank-${item.rank}">
+       <div class="creator-rank-medal">${medal(Number(item.rank))}</div>
+       ${avatar(item)}
+       <strong>${esc(item.name)}</strong>
+       <small>${esc(item.category||'Streamer')}</small>
+       <span class="creator-rank-points">${points(item.total_points)} pts</span>
+     </article>`;
+   });
+   html+='</div>';
+   box.innerHTML=html;
+ }catch(e){
+   box.innerHTML='<div class="creator-ranking-empty">Não foi possível carregar o Ranking Geral agora.</div>';
+   console.warn('Ranking Geral Carmesim Creators:',e);
+ }
+})();
+</script>
+<script>
+(async function(){
+ const youtubeRow=document.getElementById('youtubeRow');
+ const twitchRow=document.getElementById('twitchRow');
+ if(!youtubeRow||!twitchRow)return;
+ const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+ function card(x){
+   const p=(x.platform||'').toLowerCase();
+   const src=p==='youtube'?'YouTube':'Twitch';
+   const title=esc(x.title||x.creator||'Conteúdo Carmesim');
+   const creator=esc(x.creator||'Criador');
+   const cat=esc(x.category||'');
+   const views=x.views!=null?' · '+Number(x.views).toLocaleString('pt-BR')+' visualizações':'';
+   return `<article class="media-card ${x.live?'media-live':''}">
+     <div class="media-player">
+       ${x.embedUrl?`<iframe src="${esc(x.embedUrl)}" title="${title}" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`:`<div class="media-placeholder"><span class="media-platform">${src.toUpperCase()}</span><strong>Aguardando conteúdo</strong><small>Novos conteúdos serão selecionados automaticamente.</small></div>`}
+       ${x.live?'<span class="media-live-badge">● AO VIVO</span>':''}
+     </div>
+     <div class="media-card-info">
+       <div><span class="media-source">${src}${cat?' · '+cat:''}</span><h2>${creator}</h2><p><strong>${title}</strong>${views}</p></div>
+       <a class="media-open" href="${esc(x.url||'#')}" target="_blank" rel="noopener">Abrir na ${src} ↗</a>
+     </div>
+   </article>`;
+ }
+ function placeholders(platform,count){
+   const src=platform==='youtube'?'YouTube':'Twitch';
+   return Array.from({length:count},()=>`<article class="media-card"><div class="media-player"><div class="media-placeholder"><span class="media-platform">${src.toUpperCase()}</span><strong>Aguardando conteúdo</strong><small>Novos conteúdos relacionados ao Carmesim aparecerão aqui.</small></div></div><div class="media-card-info"><div><span class="media-source">${src}</span><h2>Aguardando conteúdo</h2><p>O espaço será preenchido automaticamente.</p></div><a class="media-open" href="#" aria-disabled="true">Abrir na plataforma ↗</a></div></article>`).join('');
+ }
+ try{
+   const r=await fetch('../api/media.php?ts='+Date.now(),{cache:'no-store'});
+   const d=await r.json();
+   const yt=Array.isArray(d.youtube)?d.youtube.slice(0,5):[];
+   const tw=Array.isArray(d.twitch)?d.twitch.slice(0,5):[];
+   youtubeRow.innerHTML=yt.map(card).join('')+placeholders('youtube',Math.max(0,5-yt.length));
+   twitchRow.innerHTML=tw.map(card).join('')+placeholders('twitch',Math.max(0,5-tw.length));
+ }catch(e){
+   youtubeRow.innerHTML=placeholders('youtube',5);
+   twitchRow.innerHTML=placeholders('twitch',5);
+   console.warn('Media Carmesim:',e);
+ }
+})();
+</script>
+<footer class="footer"><span>© 2026 Group Carmesim</span><span>RedM Roleplay</span><span><a class="terms-link" href="termos.html">Termos de Serviço e Privacidade</a></span><div class="developer-credit">Desenvolvido por <a class="developer-discord" href="https://discord.com/users/207712204890439680" target="_blank" rel="noopener noreferrer"><strong>luciferms666</strong></a></div></footer>
+</body></html>

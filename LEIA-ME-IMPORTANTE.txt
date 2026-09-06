@@ -1,0 +1,39 @@
+MORNINGFALL CREATORS V3 - CLOUDflare RELAY
+
+ESTRUTURA DO PACOTE
+
+1) INFINITYFREE/htdocs/
+   Envie SOMENTE o conteúdo desta pasta para a pasta htdocs do InfinityFree.
+
+2) CLOUDFLARE/worker.js
+   Este arquivo NÃO deve ser enviado para o InfinityFree para atualizar o Worker.
+   No Cloudflare: Workers & Pages > morningfall-relay > Edit code.
+   Substitua o conteúdo do worker.js pelo conteúdo de CLOUDFLARE/worker.js e clique em Deploy.
+
+3) CONFIGURAÇÃO DO SECRET
+   No Cloudflare, Settings > Variables and secrets:
+   - Key: RELAY_SECRET
+   - Type: Secret
+   - Valor: use o mesmo segredo configurado no site.
+
+   No InfinityFree, edite:
+   htdocs/config/streamer_webhook.php
+   e substitua:
+   COLOQUE_AQUI_O_NOVO_RELAY_SECRET
+   pelo mesmo valor do Secret do Cloudflare.
+
+4) ENDPOINTS DO WORKER
+   /       -> status
+   /status -> diagnóstico do Secret
+   /send   -> envio para webhook individual do streamer
+
+5) TESTE
+   Após publicar o Worker, abra:
+   https://morningfall-relay.santourso.workers.dev/status
+   Deve aparecer secret_configured: true.
+
+IMPORTANTE:
+- A pasta CLOUDFLARE é para o painel Cloudflare.
+- A pasta INFINITYFREE/htdocs é para o site.
+- Não coloque a webhook do Discord no Cloudflare.
+- Cada streamer recebe sua própria webhook no cadastro/edição do streamer.

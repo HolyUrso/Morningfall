@@ -1,0 +1,117 @@
+<?php
+require_once __DIR__ . '/database.php';
+
+function discordRankingSetting(PDO $pdo, string $key, string $fallback = ''): string {
+    try {
+        $st = $pdo->prepare('SELECT setting_value FROM settings WHERE setting_key=? LIMIT 1');
+        $st->execute([$key]);
+        $v = $st->fetchColumn();
+        return ($v === false || trim((string)$v) === '') ? $fallback : trim((string)$v);
+    } catch (Throwable $e) { return $fallback; }
+}
+
+function discordRankingSave(PDO $pdo, string $key, string $value, string $description = ''): void {
+    $st = $pdo->prepare('SELECT COUNT(*) FROM settings WHERE setting_key=?');
+    $st->execute([$key]);
+    if ((int)$st->fetchColumn()) {
+        $up = $pdo->prepare('UPDATE settings SET setting_value=?, description=? WHERE setting_key=?');
+        $up->execute([$value,$description,$key]);
+    } else {
+        $ins = $pdo->prepare('INSERT INTO settings(setting_key,setting_value,description) VALUES(?,?,?)');
+        $ins->execute([$key,$value,$description]);
+    }
+}
+
+function discordRankingQualifyingDays(PDO $pdo, int $streamerId): array {
+    $st=$pdo->prepare("SELECT DISTINCT vod_date FROM vods WHERE streamer_id=? AND duration_minutes>120 ORDER BY vod_date ASC");
+    $st->execute([$streamerId]);
+    return array_values(array_map('strval',$st->fetchAll(PDO::FETCH_COLUMN)));
+}
+
+function discordRankingSequence(PDO $pdo, int $streamerId, ?string $today=null): array {
+    $today=$today ?: date('Y-m-d');
+    $days=discordRankingQualifyingDays($pdo,$streamerId);
+    if(!$days) return ['current'=>0,'best'=>0];
+    $set=array_fill_keys($days,true); $best=0; $run=0; $prev=null;
+    foreach($days as $day){
+        if($prev!==null && (strtotime($day)-strtotime($prev))===86400) $run++; else $run=1;
+        $best=max($best,$run); $prev=$day;
+    }
+    $current=0; $last=end($days);
+    if($last===$today || $last===date('Y-m-d',strtotime($today.' -1 day'))){
+        $current=1; $cursor=$last;
+        while(isset($set[date('Y-m-d',strtotime($cursor.' -1 day'))])){ $cursor=date('Y-m-d',strtotime($cursor.' -1 day')); $current++; }
+    }
+    return ['current'=>$current,'best'=>$best];
+}
+
+function discordRankingTop10(PDO $pdo): array {
+    $rows=[];
+    $q=$pdo->query("SELECT id,name,active FROM streamers WHERE active=1 ORDER BY name ASC");
+    foreach($q->fetchAll() as $s){
+        $st=discordRankingSequence($pdo,(int)$s['id']);
+        $vod=$pdo->prepare("SELECT url,vod_date FROM vods WHERE streamer_id=? AND duration_minutes>120 ORDER BY vod_date DESC, created_at DESC LIMIT 1");
+        $vod->execute([(int)$s['id']]); $v=$vod->fetch();
+        if($st['current']<=0) continue;
+        $rows[]=['id'=>(int)$s['id'],'name'=>$s['name'],'current'=>$st['current'],'best'=>$st['best'],'url'=>$v['url']??''];
+    }
+    usort($rows,function($a,$b){ return ($b['current']<=>$a['current']) ?: ($b['best']<=>$a['best']) ?: strcasecmp($a['name'],$b['name']); });
+    return array_slice($rows,0,10);
+}
+
+
+function discordRankingUpdate(PDO $pdo): array {
+    $webhook=discordRankingSetting($pdo,'discord_ranking_webhook','');
+    if($webhook==='') throw new RuntimeException('Webhook do ranking não configurada.');
+    if(!filter_var($webhook,FILTER_VALIDATE_URL)) throw new RuntimeException('Webhook inválida.');
+
+    $footerImage=discordRankingSetting($pdo,'discord_ranking_footer_image','');
+    $messageId=discordRankingSetting($pdo,'discord_ranking_message_id','');
+    $rows=discordRankingTop10($pdo);
+    $lines=[]; $medals=['🥇','🥈','🥉'];
+    foreach($rows as $i=>$r){
+        $pos=$i+1; $label=$medals[$i]??($pos.'️⃣');
+        $name=trim((string)$r['name']); $url=trim((string)$r['url']);
+        $safeName=str_replace(['[',']'],['\\[','\\]'],$name);
+        $lines[]=$label.' **'.($url!==''?'['.$safeName.']('.$url.')':$safeName).'**';
+    }
+    if(!$lines) $lines[]='Ainda não há streamers com sequência válida.';
+    $embed=[
+      'title'=>'🏆 CARMESIM CREATORS',
+      'description'=>"🔥 **Ranking de Sequência de Lives**\n\n".implode("\n",$lines),
+      'color'=>5793266,
+      'footer'=>['text'=>'Carmesim Creators • Atualizado automaticamente a cada 1 hora'],
+      'timestamp'=>gmdate('c')
+    ];
+    if($footerImage!=='') $embed['footer']['icon_url']=$footerImage;
+    $payload=['embeds'=>[$embed]];
+
+    $call=function(string $url,array $payload): array {
+        $ch=curl_init($url);
+        curl_setopt_array($ch,[
+          CURLOPT_CUSTOMREQUEST=>'POST', CURLOPT_POSTFIELDS=>json_encode($payload,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES),
+          CURLOPT_HTTPHEADER=>['Content-Type: application/json'], CURLOPT_RETURNTRANSFER=>true,
+          CURLOPT_TIMEOUT=>20, CURLOPT_CONNECTTIMEOUT=>10, CURLOPT_SSL_VERIFYPEER=>true, CURLOPT_SSL_VERIFYHOST=>2
+        ]);
+        $body=curl_exec($ch); $err=curl_error($ch); $code=(int)curl_getinfo($ch,CURLINFO_HTTP_CODE); curl_close($ch);
+        return [$code,$body,$err];
+    };
+
+    if($messageId!==''){
+        [$code,$body,$err]=$call(rtrim($webhook,'/').'/messages/'.rawurlencode($messageId),$payload);
+        if($code>=200 && $code<300) return ['message_id'=>$messageId,'top_count'=>count($rows),'mode'=>'updated'];
+        $messageId='';
+        discordRankingSave($pdo,'discord_ranking_message_id','','ID da mensagem do ranking no Discord.');
+    }
+
+    [$code,$body,$err]=$call($webhook.(strpos($webhook,'?')===false?'?wait=true':'&wait=true'),$payload);
+    if($code<200 || $code>=300){
+        $detail=''; $decoded=json_decode((string)$body,true);
+        if(is_array($decoded) && isset($decoded['message'])) $detail=' '.$decoded['message'];
+        throw new RuntimeException('Discord recusou o ranking (HTTP '.$code.').'.($err?' '.$err:'').$detail);
+    }
+    $resp=json_decode($body,true); $messageId=(string)($resp['id']??'');
+    if($messageId==='') throw new RuntimeException('Discord não retornou o ID da mensagem.');
+    discordRankingSave($pdo,'discord_ranking_message_id',$messageId,'ID da mensagem do ranking no Discord.');
+    return ['message_id'=>$messageId,'top_count'=>count($rows),'mode'=>'created'];
+}

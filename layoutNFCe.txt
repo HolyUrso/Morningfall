@@ -1,0 +1,67 @@
+</center></fontsm></codeUTF8></linespacing0><header><pValue></pValue>                    <pValue>//emit/xNome</pValue>
+</center>CNPJ <pValue index=0 size=2>//emit/CNPJ</pValue>.<pValue index=2 size=3>//emit/CNPJ</pValue>.<pValue index=5 size=3>//emit/CNPJ</pValue>/<pValue index=8 size=4>//emit/CNPJ</pValue>-<pValue index=12 size=2>//emit/CNPJ</pValue>
+<pValue>//enderEmit/xLgr</pValue>, <pValue>//enderEmit/nro</pValue> <pValue>//enderEmit/xCpl</pValue><sameline> SALA 123 - <pValue>//enderEmit/xBairro</pValue>
+<pValue>//enderEmit/xMun</pValue> - <pValue>//enderEmit/UF</pValue> - TEL:</pValue><pValue index=0 size=2>//enderEmit/fone</pValue> <pValue index=2 size=4>//enderEmit/fone</pValue>-<pValue index=6 size=4>//enderEmit/fone</pValue></sameline></header></linespacingdefault>
+</linespacing0></center></fontsm>---------------------------------------------------------------
+</roman></fontbold>DOCUMENTO AUXILIAR DA NOTA FISCAL DE CONSUMIDOR ELETRONICA<if var="//ide/tpEmis" equal="9">
+EMITIDA EM CONTINGENCIA
+</fontnormal>Pendente de autorizacao</if>
+<if var="layoutImpressaoDanfeNfce" equal="0"></fontmd>-----------------------------------------------
+</fontsm></left><align left=1>Codigo</align><align right=21>Descricao</align>
+<align left=1>Qtde</align><align right=27>UN</align><align right=40>Vl Unit</align><align right=57>Vl Tot</align>
+---------------------------------------------------------------
+</left></fontsmall><for all="//det"><var name="countItem" type="int" op="add">1</var><align justify=0><pValue>//prod/cProd</pValue></align> <align justify=15><pValue>//prod/xProd</pValue>
+</align><align left=1><pValue>//prod/qCom</pValue></align><align right=27><pValue>//prod/uCom</pValue></align><align right=30>x</align><align right=40><pValue>//prod/vUnCom</pValue></align><align right=58><pValue>//prod/vProd</pValue></align>
+<np><var name="printDescontoItem" type="float" op="set">0</var>
+<var name="descontoitem" type="float" op="set">0</var>
+<var name="descontoitem" op="add"><pValue>//prod/vDesc</pValue></var>
+</np><if var="descontoitem" greater="0"><var name="printDescontoItem" op="add">1</var>
+<align left=41>Desconto</align><align right=58><pValue>descontoitem</pValue></align></if><if var="printDescontoItem" greater="0">
+</if></for></if></center></fontmd>-----------------------------------------------
+</left></fontsm>QTDE. TOTAL DE ITENS <align right=58><pValue>countItem</pValue></align>
+</fontbold>VALOR TOTAL R$<align right=58><pValue>//total/ICMSTot/vProd</pValue></align></fontnormal><np>
+<var name="acrescimos" type="float" op="set">0</var>
+<var name="acrescimos" op="add"><pValue>//total/ICMSTot/vFrete</pValue></var>
+<var name="acrescimos" op="add"><pValue>//total/ICMSTot/vSeg</pValue></var>
+<var name="acrescimos" op="add"><pValue>//total/ICMSTot/vOutro</pValue></var>
+<var name="printValorPagar" type="float" op="set">0</var>
+</np><if var="acrescimos" greater="0"><var name="printValorPagar" op="add">1</var>
+<align left=0>ACRESCIMOS R$</align><align right=58><pValue>acrescimos</pValue></align></if><np>
+<var name="descontos" type="float" op="set">0</var>
+<var name="descontos" op="add"><pValue>//total/ICMSTot/vDesc</pValue></var>
+</np><if var="descontos" greater="0"><var name="printValorPagar" op="add">1</var>
+<align left=0>DESCONTOS R$</align><align right=58><pValue>descontos</pValue></align></if><if var="printValorPagar" greater="0">
+</fontbold><align left=0>VALOR A PAGAR R$</align><align right=58><pValue>//total/ICMSTot/vNF</pValue></align></if>
+</fontnormal>FORMA DE PAGAMENTO                           VALOR PAGO R$<for all="//detPag">
+</fontnormal><if var="//tPag" equal="01">Dinheiro</if><if var="//tPag" equal="02">Cheque</if><if var="//tPag" equal="03">Cartao de Credito</if><if var="//tPag" equal="04">Cartao de Debito</if><if var="//tPag" equal="05">Credito Loja</if><if var="//tPag" equal="10">Vale Alimentacao</if><if var="//tPag" equal="11">Vale Refeicao</if><if var="//tPag" equal="12">Vale Presente</if><if var="//tPag" equal="13">Vale Combustivel</if><if var="//tPag" equal="14">Duplicata Mercantil</if><if var="//tPag" equal="15">Boleto Bancario</if><if var="//tPag" equal="16">Deposito Bancario</if><if var="//tPag" equal="17">Pagamento Instantaneo(PIX)</if><if var="//tPag" equal="18">Transferencia bancaria, Carteira Digital</if><if var="//tPag" equal="19">Programa de fidelidade, Cashback, Credito Virtual</if><if var="//tPag" equal="99">Outros</if> <align right=58><pValue>//vPag</pValue></align></for><if var="//pag/vTroco" nequal="0.00">
+</fontsm></fontbold>TROCO <align right=58><pValue>//pag/vTroco</pValue></align></if>
+</center></fontmd>-----------------------------------------------
+</fontsm></fontbold><if var="//ide/tpAmb" equal="2"></center>NFC-e EMITIDA EM AMBIENTE DE HOMOLOGACAO SEM VALOR FISCAL</if>
+</fontbold></center>Consulte pela Chave de Acesso em
+</fontsmall><pValue>//infNFeSupl/urlChave</pValue>
+<pValue index=3 size=4>//infNFe/@Id</pValue> <pValue index=7 size=4>//infNFe/@Id</pValue> <pValue index=11 size=4>//infNFe/@Id</pValue> <pValue index=15 size=4>//infNFe/@Id</pValue> <pValue index=19 size=4>//infNFe/@Id</pValue> <pValue index=23 size=4>//infNFe/@Id</pValue> <pValue index=27 size=4>//infNFe/@Id</pValue> <pValue index=31 size=4>//infNFe/@Id</pValue> <pValue index=35 size=4>//infNFe/@Id</pValue> <pValue index=39 size=4>//infNFe/@Id</pValue> <pValue index=43 size=4>//infNFe/@Id</pValue>
+</center></fontsmall><np><var name="idConsumidor" type="int" op="set">0</var></np><if var="//dest/CNPJ"><var name="idConsumidor" op="set">1</var></fontmd>-----------------------------------------------</fontsm>
+</fontbold>Consumidor - CNPJ <pValue index=0 size=2>//dest/CNPJ</pValue>.<pValue index=2 size=3>//dest/CNPJ</pValue>.<pValue index=5 size=3>//dest/CNPJ</pValue>/<pValue index=8 size=4>//dest/CNPJ</pValue>-<pValue index=12 size=2>//dest/CNPJ</pValue></if><if var="//dest/CPF"><var name="idConsumidor" op="set">1</var></fontmd>---------------------------------------------
+</fontsm></fontbold>Consumidor - CPF <pValue index=0 size=3>//dest/CPF</pValue>.<pValue index=3 size=3>//dest/CPF</pValue>.<pValue index=6 size=3>//dest/CPF</pValue>-<pValue index=9 size=2>//dest/CPF</pValue></if><if var="//dest/idEstrangeiro"><var name="idConsumidor" op="set">1</var>Consumidor - ID <pValue>//dest/idEstrangeiro</pValue></if><if var="idConsumidor" equal="1"><if var="//dest/xNome">
+<pValue>//dest/xNome</pValue></if></if><if var="idConsumidor" equal="0"></center></fontmd>-----------------------------------------------
+</fontsm></fontsm>CONSUMIDOR NAO IDENTIFICADO</if><if var="//enderDest/xLgr"><pValue>//enderDest/xLgr</pValue><if var="//enderDest/nro">, <pValue>//enderDest/nro</pValue></if> <if var="//enderDest/xCpl">, <pValue>//enderDest/xCpl</pValue></if><sameline><if var="//enderDest/xBairro"><pValue>//enderDest/xBairro</pValue></if><if var="//enderDest/xMun">, <pValue>//enderDest/xMun</pValue></if><if var="//enderDest/UF"> - <pValue>//enderDest/UF</pValue></if></sameline></if>
+<np><var name="numero" type="int" op="set"><pValue>//ide/nNF</pValue></var>
+<var name="serie" type="int" op="set"><pValue>//ide/serie</pValue></var>
+</np></fontmd>-----------------------------------------------</fontsm>
+</fontbold></center>NFC-e No. <var name="numero" op="print">%09d</var> Serie <var name="serie" op="print">%03d</var> Emissao <pValue index=8 size=2>//ide/dhEmi</pValue>/<pValue index=5 size=2>//ide/dhEmi</pValue>/<pValue size=4>//ide/dhEmi</pValue> <pValue index=11 size=2>//ide/dhEmi</pValue>:<pValue index=14 size=2>//ide/dhEmi</pValue>:<pValue index=17 size=2>//ide/dhEmi</pValue>
+<if var="//ide/tpEmis" equal="1">Protocolo de autorizacao: <pValue>//infProt/nProt</pValue>
+Data de autorizacao: <pValue index=8 size=2>//infProt/dhRecbto</pValue>/<pValue index=5 size=2>//infProt/dhRecbto</pValue>/<pValue size=4>//infProt/dhRecbto</pValue> <pValue index=11 size=2>//infProt/dhRecbto</pValue>:<pValue index=14 size=2>//infProt/dhRecbto</pValue>:<pValue index=17 size=2>//infProt/dhRecbto</pValue>
+</if><if var="//ide/tpEmis" equal="9"></center></fontmd></fontbold>EMITIDA EM CONTINGENCIA
+</fontmd>Pendente de autorizacao - <pValue>msgVia</pValue>
+</if></fontmd><if var="//infProt/cMsg" equal="200">
+</fontbold><replace from="\|"><pValue>//infProt/xMsg</pValue></replace>
+</if>
+</center><qrcode size="3"><pValue>//qrCode</pValue></qrcode>
+</left><//fontsm><align left=0><replace from="|"><pValue>//infAdic/infCpl</pValue></replace>
+</center></fontbold><pValue>msgPromocional</pValue>
+<if var="documentoTexto1" exist="1"></cutter cut="half"><pValue>documentoTexto1</pValue></if>
+<if var="documentoTexto2" exist="1"></cutter cut="half"><pValue>documentoTexto2</pValue></if>
+<if var="documentoTexto3" exist="1"></cutter cut="half"><pValue>documentoTexto3</pValue></if>
+<if var="documentoTexto4" exist="1"></cutter cut="half"><pValue>documentoTexto4</pValue></if>
+<if var="documentoTexto5" exist="1"></cutter cut="half"><pValue>documentoTexto5</pValue></if>
+</cutter cut="full"></align>
