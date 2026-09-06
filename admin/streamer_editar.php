@@ -42,33 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $platformSync = new PlatformSync();
                     $result = $platformSync->resolve($channel, $platform !== '' ? $platform : null);
                     $syncPlatform = (string)$result['platform'];
-
-                    $platformLookup = $pdo->prepare('SELECT id FROM streamer_platforms WHERE streamer_id=? AND platform=? LIMIT 1');
-                    $platformLookup->execute([$id, $syncPlatform]);
-                    $platformId = $platformLookup->fetchColumn();
-
-                    if ($platformId !== false) {
-                        $platformUpdate = $pdo->prepare('UPDATE streamer_platforms SET username=?,display_name=?,channel_id=?,avatar_url=?,channel_url=?,is_primary=1,active=1,last_synced_at=NOW(),sync_error=NULL WHERE id=?');
-                        $platformUpdate->execute([
-                            $result['username'],
-                            $result['display_name'],
-                            $result['channel_id'],
-                            $result['avatar_url'],
-                            $result['channel_url'],
-                            (int)$platformId
-                        ]);
-                    } else {
-                        $platformInsert = $pdo->prepare('INSERT INTO streamer_platforms(streamer_id,platform,username,display_name,channel_id,avatar_url,channel_url,is_primary,active,last_synced_at,sync_error) VALUES(?,?,?,?,?,?,?,1,1,NOW(),NULL)');
-                        $platformInsert->execute([
-                            $id,
-                            $result['platform'],
-                            $result['username'],
-                            $result['display_name'],
-                            $result['channel_id'],
-                            $result['avatar_url'],
-                            $result['channel_url']
-                        ]);
-                    }
+                    $platformSync->storeResolvedChannel($pdo, $id, $result);
                 } catch (Throwable $syncException) {
                     $syncError = substr($syncException->getMessage(), 0, 500);
                     try {
@@ -76,18 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             $platformSync = new PlatformSync();
                             $syncPlatform = $platformSync->detectPlatform($channel);
                         }
-
-                        $platformLookup = $pdo->prepare('SELECT id FROM streamer_platforms WHERE streamer_id=? AND platform=? LIMIT 1');
-                        $platformLookup->execute([$id, $syncPlatform]);
-                        $platformId = $platformLookup->fetchColumn();
-
-                        if ($platformId !== false) {
-                            $platformErrorUpdate = $pdo->prepare('UPDATE streamer_platforms SET sync_error=? WHERE id=?');
-                            $platformErrorUpdate->execute([$syncError, (int)$platformId]);
-                        } else {
-                            $platformErrorInsert = $pdo->prepare('INSERT INTO streamer_platforms(streamer_id,platform,username,display_name,channel_id,avatar_url,channel_url,is_primary,active,last_synced_at,sync_error) VALUES(?,?,?,?,?,?,?,1,1,NULL,?)');
-                            $platformErrorInsert->execute([$id,$syncPlatform,$channel,'','','',$channel,$syncError]);
-                        }
+                        $platformSync->storeChannelError($pdo, $id, $syncPlatform, $channel, $syncError);
                     } catch (Throwable $ignored) {
                     }
                 }

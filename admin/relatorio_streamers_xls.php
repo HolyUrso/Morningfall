@@ -59,7 +59,7 @@ SELECT
     s.name,
     s.category,
     s.discord,
-    s.platform,
+    sp.platform,
     COALESCE((SELECT SUM(v.duration_minutes)
               FROM vods v
               WHERE v.streamer_id = s.id $vodDateFilter), 0) AS total_minutes,
@@ -72,6 +72,10 @@ SELECT
               FROM redemptions r
               WHERE r.streamer_id = s.id $redemptionDateFilter), 0) AS redemption_count
 FROM streamers s
+LEFT JOIN streamer_platforms sp
+    ON sp.streamer_id=s.id
+ AND sp.is_primary=1
+ AND sp.active=1
 WHERE s.active = 1 $categoryFilter
 ORDER BY s.points DESC, total_minutes DESC, s.name ASC
 ";

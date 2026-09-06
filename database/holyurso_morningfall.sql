@@ -2063,7 +2063,7 @@ DROP TABLE IF EXISTS `streamer_channels`;
 CREATE TABLE IF NOT EXISTS `streamer_channels` (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `streamer_id` int(10) UNSIGNED NOT NULL,
-  `platform` enum('twitch','youtube') NOT NULL,
+  `platform` enum('twitch','youtube','kick','tiktok') NOT NULL,
   `channel_url` varchar(700) NOT NULL,
   `channel_login` varchar(160) DEFAULT NULL,
   `external_id` varchar(160) DEFAULT NULL,
@@ -2116,6 +2116,37 @@ CREATE TABLE IF NOT EXISTS `streamer_platforms` (
   KEY `idx_platform` (`platform`),
   KEY `idx_platform_username` (`platform`,`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO streamer_platforms
+    (streamer_id,platform,username,channel_url,display_name,is_primary,active,enabled,last_sync)
+SELECT
+    s.id,
+    LOWER(TRIM(s.platform)),
+    NULLIF(TRIM(s.channel_url), ''),
+    NULLIF(TRIM(s.channel_url), ''),
+    s.name,
+    1,
+    1,
+    1,
+    NULL
+FROM streamers s
+WHERE LOWER(TRIM(s.platform)) IN ('twitch','youtube','kick','tiktok')
+  AND NULLIF(TRIM(s.channel_url), '') IS NOT NULL;
+
+INSERT INTO streamer_channels
+    (streamer_id,platform,channel_url,channel_login,display_name,active,last_synced_at,last_error)
+SELECT
+    s.id,
+    LOWER(TRIM(s.platform)),
+    TRIM(s.channel_url),
+    TRIM(s.channel_url),
+    s.name,
+    1,
+    NULL,
+    NULL
+FROM streamers s
+WHERE LOWER(TRIM(s.platform)) IN ('twitch','youtube','kick','tiktok')
+  AND NULLIF(TRIM(s.channel_url), '') IS NOT NULL;
 
 --
 -- RELACIONAMENTOS PARA TABELAS `streamer_platforms`:

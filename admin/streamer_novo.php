@@ -2,7 +2,6 @@
 require_once '../config/auth.php';
 require_once '../config/database.php';
 require_once '../config/audit.php';
-require_once __DIR__.'/../classes/PlatformSync.php';
 
 $error = '';
 $successCode = '';
@@ -27,57 +26,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         if ($code === '') $code = strtoupper(bin2hex(random_bytes(4)));
         try {
-            $pdo->beginTransaction();
             $st = $pdo->prepare("INSERT INTO streamers(name,discord,discord_id,discord_avatar,platform,channel_url,category,access_code,joined_at,notes,webhook_url) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
             $st->execute([$name,$discord,$discordId !== '' ? $discordId : null,$discordAvatar !== '' ? $discordAvatar : null,$platform,$channel,$category,$code,$joined ?: null,$notes,$webhook !== '' ? $webhook : null]);
             $newId=(int)$pdo->lastInsertId();
-            $syncedPlatform = $platform;
-
-            if ($channel !== '') {
-                $platformSync = new PlatformSync();
-                $result = $platformSync->resolve($channel, $platform !== '' ? $platform : null);
-                $syncedPlatform = (string)$result['platform'];
-
-                $platformLookup = $pdo->prepare('SELECT id FROM streamer_platforms WHERE streamer_id=? AND platform=? LIMIT 1');
-                $platformLookup->execute([$newId, $syncedPlatform]);
-                $platformId = $platformLookup->fetchColumn();
-
-                if ($platformId !== false) {
-                    $platformUpdate = $pdo->prepare('UPDATE streamer_platforms SET username=?,display_name=?,channel_id=?,avatar_url=?,channel_url=?,is_primary=1,active=1,last_synced_at=NOW(),sync_error=NULL WHERE id=?');
-                    $platformUpdate->execute([
-                        $result['username'],
-                        $result['display_name'],
-                        $result['channel_id'],
-                        $result['avatar_url'],
-                        $result['channel_url'],
-                        (int)$platformId
-                    ]);
-                } else {
-                    $platformInsert = $pdo->prepare('INSERT INTO streamer_platforms(streamer_id,platform,username,display_name,channel_id,avatar_url,channel_url,is_primary,active,last_synced_at,sync_error) VALUES(?,?,?,?,?,?,?,1,1,NOW(),NULL)');
-                    $platformInsert->execute([
-                        $newId,
-                        $result['platform'],
-                        $result['username'],
-                        $result['display_name'],
-                        $result['channel_id'],
-                        $result['avatar_url'],
-                        $result['channel_url']
-                    ]);
-                }
-            }
-
-            auditLog($pdo,'Cadastro de streamer','Usuário',$newId,$name,'Novo streamer cadastrado.',null,['name'=>$name,'category'=>$category,'platform'=>$syncedPlatform,'joined_at'=>$joined]);
-            $pdo->commit();
+            auditLog($pdo,'Cadastro de streamer','Usuário',$newId,$name,'Novo streamer cadastrado.',null,['name'=>$name,'category'=>$category,'platform'=>$platform,'joined_at'=>$joined]);
             header('Location: streamer.php?id='.$newId.'&created=1');
             exit;
         } catch (PDOException $e) {
-            if ($pdo->inTransaction()) $pdo->rollBack();
             $error = ($e->getCode() === '23000')
                 ? 'Esse código de acesso já está sendo usado. Gere outro ou informe um diferente.'
                 : 'Não foi possível cadastrar o streamer.';
-        } catch (Throwable $e) {
-            if ($pdo->inTransaction()) $pdo->rollBack();
-            $error = 'Não foi possível sincronizar o canal do streamer.';
         }
     }
 }
